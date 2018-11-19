@@ -16,6 +16,7 @@
 	<script src="js/index.js"></script>
 	
 	<title>Technonew</title>
+	
 </head>
 <body>
 	<button class="btn-success" id="btna" type="button">BUtton</button>
