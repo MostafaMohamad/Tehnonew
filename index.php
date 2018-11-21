@@ -20,7 +20,6 @@
 	
 </head>
 <body>
-	<h1>test</h1>
-	<button class="btn-success" id="btna" type="button">BUtton</button>
+	
 </body>
 </html>
