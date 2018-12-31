@@ -1,54 +1,83 @@
 @charset "utf-8";
 /* CSS Document */
-
-.page-container{
-	width: 1000px;
-	margin:  0 auto;
+body{
+	
+	
 }
-
-/*Center nav bar*/
-#myNavbar{
+#categories {
+	width: 100%;
 	text-align: center;
 }
-#ulnav{
-	display: inline-block;
+#categories li {
 	float: none;
+	display: inline-block;
 }
-
-/*Collapse nav bar at 860px*/
-@media (max-width: 860px) {
-  .navbar-header {
-      float: none;
-  }
-  .navbar-left,.navbar-right {
-      float: none !important;
-  }
-  .navbar-toggle {
-      display: block;
-  }
-  .navbar-collapse {
-      border-top: 1px solid transparent;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-  }
-  .navbar-fixed-top {
-      top: 0;
-      border-width: 0 0 1px;
-  }
-  .navbar-collapse.collapse {
-      display: none!important;
-  }
-  .navbar-nav {
-      float: none!important;
-      margin-top: 7.5px;
-  }
-  .navbar-nav>li {
-      float: none;
-  }
-  .navbar-nav>li>a {
-      padding-top: 10px;
-      padding-bottom: 10px;
-  }
-  .collapse.in{
-      display:block !important;
-	}
+.vcenter {
+	min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+	min-height: 100vh; /* These two lines are counted as one :-)       */
+	display: flex;
+	align-items: center;
+}
+.login-body, .register-body {
+	background-image: url(../img/background.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+fieldset {
+	border: 1px solid #FFFFFF;
+	padding: 50px;
+	border-radius: 25px;
+	background: #FFFFFF;
+	text-align: left;
+	opacity: 0.7;
+}
+fieldset input {
+	border-radius: 5px;
+}
+.login-btn, #submit {
+	background-color: #333333;
+	color: #FFFFFF;
+	border-radius: 50px;
+	padding: 15px;
+}
+.login-btn:hover, #submit:hover {
+	color: #FFFFFF;
+	background-color: #6a1b9a;
+}
+.forget {
+	float: right;
+}
+.forget a {
+	color: #000000;
+	text-decoration: none;
+}
+.forget a:hover {
+	color: #6a1b9a;
+}
+.register a {
+	color: #000000;
+	;
+	text-decoration: none;
+}
+.register a:hover {
+	color: #6a1b9a;
+}
+.form-top a {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+.items {
+	border: #eee solid 1px;
+	margin: 5px;
+	font-size: 16px;
+}
+.buttons{
+	margin-left: 10px;
+	text-align: center;
+}
+hr{
+	
+}
+.prices{
+	
 }
