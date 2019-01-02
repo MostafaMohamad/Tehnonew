@@ -15,7 +15,7 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="js/bootstrap.min.js"></script>
-<script src="js/index.js"></script>
+<script src="js/login.js"></script>
 <link type="text/css" rel="stylesheet" href="css/all.min.css">
 <title>TECHNONEW|Login</title>
 </head>
@@ -23,7 +23,7 @@
 <body class="login-body">
 <div class="vcenter">
   <div class="container text-center col-lg-4 col-md-6 col-sm-6">
-    <form>
+    <form action="javascript:void(0);" id="login-form" >
       <div class="form-top">
         <h1><a href="index.html">TECHNONEW</a></h1>
       </div>
@@ -32,16 +32,17 @@
         <br>
         <div class="form-group">
           <label for="email">Email address:</label>
-          <input type="email" class="form-control input-lg" id="email">
+          <input type="email" class="form-control input-lg" id="login-email">
         </div>
         <div class="form-group">
           <label for="pass">Password:</label>
-          <input type="password" class="form-control input-lg" id="pass">
+          <input type="password" class="form-control input-lg" id="login-pass">
         </div>
+		<p class="error"><span class="fa fa-exclamation-circle"></span> Wrong username or password!</p>
         <div class="forget"> <a href="#">Forgot Password?</a></div>
         <br>
         <br>
-        <button type="submit" class="btn login-btn col-lg-12">LOGIN</button>
+        <input type="submit" class="btn login-btn col-lg-12" value="LOGIN">
         
         <div class="register col-lg-12">
 			<hr>
