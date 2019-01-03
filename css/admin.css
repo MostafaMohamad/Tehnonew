@@ -1,6 +1,22 @@
 @charset "utf-8";
 /* CSS Document */
+#wrapper {
+	width: 100%;
+}
+#page-wrapper {
+	padding: 0 15px;
+	min-height: 568px;
+	background-color: white;
+}
 
+@media (min-width: 768px) {
+#page-wrapper {
+	position: inherit;
+	margin: 0 0 0 250px;
+	padding: 0 30px;
+	border-left: 1px solid #e7e7e7;
+}
+}
 /* Top Navigation */
 
 .top-nav {
@@ -90,4 +106,49 @@ ul.alert-dropdown {
 }
 .side-nav>li>ul>li>a:hover {
 	color: #fff;
+}
+.huge {
+	font-size: 40px;
+}
+.panel-green {
+	border-color: #5cb85c;
+}
+.panel-green > .panel-heading {
+	border-color: #5cb85c;
+	color: white;
+	background-color: #5cb85c;
+}
+.panel-green > a {
+	color: #5cb85c;
+}
+.panel-green > a:hover {
+	color: #3d8b3d;
+}
+.panel-red {
+	border-color: #d9534f;
+}
+.panel-red > .panel-heading {
+	border-color: #d9534f;
+	color: white;
+	background-color: #d9534f;
+}
+.panel-red > a {
+	color: #d9534f;
+}
+.panel-red > a:hover {
+	color: #b52b27;
+}
+.panel-yellow {
+	border-color: #f0ad4e;
+}
+.panel-yellow > .panel-heading {
+	border-color: #f0ad4e;
+	color: white;
+	background-color: #f0ad4e;
+}
+.panel-yellow > a {
+	color: #f0ad4e;
+}
+.panel-yellow > a:hover {
+	color: #df8a13;
 }
