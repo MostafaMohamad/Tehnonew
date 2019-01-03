@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<!-- Style css -->
+<link href="css/admin.css" type="text/css" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link type="text/css" rel="stylesheet" href="css/all.min.css">
+
+<!-- jQuery library -->
+<script src="js/jquery-3.3.1.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+	
+	<script src="js/admin.js"></script>
+<title>Technonew | Products</title>
+</head>
+<body>
+<div id="wrapper"> 
+  <!-- Navigation -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> 
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+      <a class="navbar-brand" href="admin.html">Technonew Admin</a> </div>
+    <!-- Top Menu Items -->
+    <ul class="nav navbar-right top-nav">
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+        <ul class="dropdown-menu message-dropdown">
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+        <ul class="dropdown-menu alert-dropdown">
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Admin Name <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li> <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a> </li>
+          <li> <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a> </li>
+          <li> <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a> </li>
+          <li class="divider"></li>
+          <li> <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a> </li>
+        </ul>
+      </li>
+    </ul>
+    
+    <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav side-nav">
+        <li ><a href="admin.html"><span class="fas fa-tachometer-alt"></span> Dashboard</a> </li>
+        <li> <a href="#"><i class="fa fa-fw fa-calendar-alt"></i> New Arrivals</a> </li>
+        <li> <a href="#"><i class="fa fa-users"></i> Customers</a> </li>
+        <li> <a href="#"><i class="fa fa-fw fa-building"></i> Vendors</a> </li>
+        <li class="active"> <a href="products.html"><i class="fa fa-fw fa-dashboard"></i><i class="fa fa-fw fa-box-open"></i> Products</a> </li>
+        <li> <a href="#"><i class="fa fa-fw fa-clipboard-list"></i> Orders</a> </li>
+        <li> <a href="#"><i class="fa fa-fw fa-chart-line"></i> Reports</a> </li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse --> 
+  </nav>
+	<br><br><br><br>
+  <div id="page-wrapper">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header">Products</h1>
+      </div>
+      <!-- /.col-lg-12 --> 
+    </div>
+    <div id="top-table">
+      <ul class="list-inline">
+        <li><a href="#" id="add_new"><span class="fa fa-plus"></span> Add</a></li>
+        <li><a href="#"><span class="fas fa-save"></span> Save</a></li>
+        <li><a href="#"><span class="fas fa-sync-alt"></span> Refresh</a></li>
+        <li><a href="#"><span class="fas fa-filter"></span> Filter</a></li>
+        <li><a href="#"><span class="fas fa-sort"></span> Sort</a></li>
+        <div class="input-group pull-right col-lg-4 col-sm-4 col-md-4 col-xs-12">
+          <input type="text" class="form-control" placeholder="Search">
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="submit"> <i class="glyphicon glyphicon-search"></i> </button>
+          </div>
+        </div>
+      </ul>
+    </div>
+    <br>
+    <table class="table table-bordered" id="ptable">
+      <thead>
+        <tr>
+          <th class="col-lg-1">Name</th>
+          <th class="col-lg-1">Category</th>
+          <th class="col-lg-1">Brand</th>
+          <th class="col-lg-1">Description</th>
+          <th class="col-lg-1">Image</th>
+          <th class="col-lg-1">Price</th>
+          <th class="col-lg-1">Created</th>
+        </tr>
+      </thead>
+      <tbody>
+         
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

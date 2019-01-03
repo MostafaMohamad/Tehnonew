@@ -152,3 +152,16 @@ ul.alert-dropdown {
 .panel-yellow > a:hover {
 	color: #df8a13;
 }
+#top-table a{
+	text-decoration: none;
+	color: #333333;
+}
+#top-table a:hover{
+	color: #d9534f;
+}
+#top-table a:active{
+	color: #0093FF;
+}
+#ptable,#ptable th{
+	text-align: center;
+}
