@@ -104,7 +104,7 @@ if ( isset( $_GET[ "op" ] ) ) {
 	//Update Info
 	else if ( $_GET[ "op" ] == "profileUpdate" ) {
 
-		$sql = "UPDATE users SET user_fullname = '" . $_GET[ "uname" ] . "',user_address = '" . $_GET[] . "',user_phone = '" . $_GET[ "uphone" ] . "' WHERE user_username = '" . $_GET[ "uuname" ] . "'";
+		$sql = "UPDATE users SET user_fullname = '" . $_GET[ "uname" ] . "',user_address = '" . $_GET["uaddress"] . "',user_phone = '" . $_GET[ "uphone" ] . "' WHERE user_username = '" . $_GET[ "uuname" ] . "'";
 
 		try {
 			$db = new DAL();

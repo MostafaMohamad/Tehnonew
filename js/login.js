@@ -23,7 +23,9 @@ function UserLogin(email, password) {
 		data: ({
 			op: "login",
 			uemail: email,
+			uuname: email,
 			upass: password
+			
 		}),
 
 		dataType: 'json',
@@ -33,7 +35,7 @@ function UserLogin(email, password) {
 			if (data === null) {
 				$(".error").css("display", "inline-block");
 			} else if (data !== null) {
-				var utype = data.u_type;
+				var utype = data.user_type;
 				UserType(utype);
 			}
 		},
