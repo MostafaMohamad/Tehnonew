@@ -8,7 +8,7 @@ if ( isset( $_GET[ "op" ] ) ) {
 	if ( $_GET[ "op" ] == "login" ) {
 		if ( isset( $_GET[ "uemail" ] ) && isset( $_GET[ "upass" ] ) ) {
 			$encpass = $_GET[ "upass" ];
-			$sql = "SELECT * FROM users WHERE user_email ='" . $_GET[ "uemail" ] . "' OR user_username ='" . $_GET[ "uuname" ] . "'AND user_password = '" . $encpass . "'";
+			$sql = "SELECT * FROM users WHERE user_password ='" .$encpass. "' AND user_username ='" . $_GET[ "uuname" ] . "'OR user_email = '" . $_GET["uemail"] . "' AND user_password='".$encpass."'";
 			try {
 				$db = new DAL();
 				$data = $db->getData( $sql );
