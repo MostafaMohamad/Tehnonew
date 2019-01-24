@@ -2,7 +2,7 @@
 /* CSS Document */
 body{
 	
-	
+	background-color: #fafafa;
 }
 #categories {
 	width: 100%;
@@ -71,6 +71,18 @@ fieldset input {
 	margin: 5px;
 	font-size: 16px;
 }
+.items:hover {
+	box-shadow:0px 0px 5px 2px #9b0000;
+}
+.fa-cart-plus {
+	color: #d50000;
+}
+.navbar{
+	background-color: #d50000;
+}
+.navbar-brand, .nav.navbar-nav li a{
+	color: #FAFAFA !important;
+}
 .buttons{
 	margin-left: 10px;
 	text-align: center;
@@ -79,7 +91,7 @@ fieldset input {
 	display: none;
 }
 footer{
-     background-color: #F8F8F8;
+     background-color: #d50000;
      padding:70px 0px;
 }	       
 
@@ -88,7 +100,7 @@ footer ul li{
 }
 
 .adress span , .contact span , .social span{
-   color: #6B5E6B; 
+   color: #FAFAFA; 
    font-weight: 800; 
    padding-bottom: 10px; 
    margin-bottom: 20px;
@@ -99,7 +111,7 @@ footer ul li{
 }
  
 .adress li p , .contact li a , .social li a{
-    color:#6B5E6B;
+    color:#FAFAFA;
     letter-spacing: 2px;
     text-decoration:none;
     font-size:15px;
@@ -117,4 +129,12 @@ footer ul li{
     color:#6B5E6B;
     margin-right: 15px;
     font-size:14px;
+}
+
+.dropdown-menu,.dropdown-toggle:active, .open ,.dropdown-toggle{
+	background-color: #d50000 !important;
+	text-align: center;
+}
+.dropdown-menu li a:hover{
+	background-color: #9b0000 !important;
 }
