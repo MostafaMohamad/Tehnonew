@@ -54,12 +54,36 @@ if ( isset( $_GET[ "op" ] ) ) {
 		}
 
 	}
+	//check email availability
+	else if ( $_GET[ "op" ] == "eavailability" ) {
+
+		$sql = "SELECT * FROM users WHERE user_email='" . $_GET[ "uemail" ] . "'";
+
+		try {
+			$db = new DAL();
+			$data = $db->getData( $sql );
+
+			header( "Content-type:application/json" );
+
+			if ( empty( $data ) ) {
+				echo( "0" );
+			} else if ( count( $data ) > 0 ) {
+				echo( "1" );
+			} else {
+				echo( "-1" );
+			}
+
+		} catch ( Exception $e ) {
+			echo - 1;
+		}
+
+	}
 
 	//Insert new user
 	else if ( $_GET[ "op" ] == "register" ) {
 
-		$sql = "INSERT INTO  users (user_fullname,user_username,user_dob,user_email,user_gender,user_phone,user_type,user_address,user_password,
-		user_status) VALUES('" . $_GET[ "ufname" ] . "','" . $_GET[ "uuname" ] . "','" . $_GET[ "udob" ] . "','" . $_GET[ "uemail" ] . "','" . $_GET[ "ugender" ] . "','" . $_GET[ "uphone" ] . "','" . $_GET[ "utype" ] . "','" . $_GET[ "uaddress" ] . "','" . $_GET[ "upass" ] . "','" . $_GET[ "ustatus" ] . "')";
+		$sql = "INSERT INTO  users (user_fullname,user_username,user_dob,user_email,user_gender,user_type,user_password,
+		user_status) VALUES('" . $_GET[ "ufname" ] . "','" . $_GET[ "uuname" ] . "','" . $_GET[ "udob" ] . "','" . $_GET[ "uemail" ] . "','" . $_GET[ "ugender" ] . "','" . $_GET[ "utype" ] . "','" . $_GET[ "upass" ] . "','" . $_GET[ "ustatus" ] . "')";
 
 		try {
 			$db = new DAL();
@@ -71,6 +95,11 @@ if ( isset( $_GET[ "op" ] ) ) {
 				echo( "0" );
 			} else if ( !empty( $data ) > 0 ) {
 				echo( "1" );
+				session_start();
+					$_SESSION[ "uid" ] = $data[ 0 ][ "user_id" ];
+					$_SESSION[ "uname" ] = $data[ 0 ][ "user_username" ];
+					$_SESSION[ "utype" ] = $data[ 0 ][ "user_type" ];
+				
 			} else {
 				echo( "-1" );
 			}

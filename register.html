@@ -15,13 +15,14 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="js/bootstrap.min.js"></script>
+<script src="js/register.js"></script>
 <link type="text/css" rel="stylesheet" href="css/all.min.css">
 <title>TECHNONEW|Sign Up</title>
 </head>
 <body class="register-body">
 <div class="vcenter">
   <div class="container text-center col-lg-4 col-md-6 col-sm-6">
-    <form>
+    <form action="javascript:void(0);" id="signup-form">
       <div class="form-top">
         <h1><a href="index.html">TECHNONEW</a></h1>
       </div>
@@ -34,11 +35,15 @@
         </div>
         <div class="form-group col-lg-6 ">
           <label for="uname">Username:</label>
-          <input type="text" class="form-control" id="uname" required>
+          <div class="inner-addon right-addon"> <i id="validationicon" class=""></i>
+            <input type="text" class="form-control" id="uname" required>
+          </div>
         </div>
         <div class="form-group col-lg-6 ">
           <label for="email">Email address:</label>
-          <input type="email" class="form-control" id="email" required>
+          <div class="inner-addon right-addon"> <i id="evalidationicon" class=""></i>
+            <input type="email" class="form-control" id="email" required>
+          </div>
         </div>
         <div class="form-group col-lg-6 ">
           <label for="dob">Date of birth:</label>
@@ -60,10 +65,12 @@
           <label for="cpass">Confirm Password:</label>
           <input type="password" class="form-control" id="cpass" required>
           <br>
+          <p class="error"><span class="fas fa-exclamation-circle"></span> Passwords dont match</p>
+          <br>
         </div>
-        <div class="form-group col-lg-12 ">
-          <input type="submit" class="form-control btn btn-default input-lg"  id="submit" value="SIGN UP">
-        </div>
+        <input type="submit" class="btn login-btn col-lg-12 btext " id="submit" value="SIGN UP">
+        <br>
+        <br>
         <div class="register col-lg-12">
           <hr>
           <p>Already registered&#63; <a href="login.html">Login now!</a></p>

@@ -1,7 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
-body{
-	
+body {
 	background-color: #fafafa;
 }
 #categories {
@@ -19,7 +18,7 @@ body{
 	align-items: center;
 }
 .login-body, .register-body {
-	background-image: url(../img/background.png);
+	background-image: url(../img/background.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -34,15 +33,18 @@ fieldset {
 fieldset input {
 	border-radius: 5px;
 }
-.login-btn, #submit {
+#lgbtn, #submit {
 	background-color: #333333;
 	color: #FFFFFF;
 	border-radius: 50px;
 	padding: 15px;
 }
-.login-btn:hover, #submit:hover {
+#lgbtn:hover, #submit:hover {
 	color: #FFFFFF;
-	background-color: #6a1b9a;
+	background-color: #d50000;
+}
+#lgbtn:active:focus {
+	color: #fff !important;
 }
 .forget {
 	float: right;
@@ -52,7 +54,7 @@ fieldset input {
 	text-decoration: none;
 }
 .forget a:hover {
-	color: #6a1b9a;
+	color: #d50000;
 }
 .register a {
 	color: #000000;
@@ -60,7 +62,7 @@ fieldset input {
 	text-decoration: none;
 }
 .register a:hover {
-	color: #6a1b9a;
+	color: #d50000;
 }
 .form-top a {
 	text-decoration: none;
@@ -72,69 +74,97 @@ fieldset input {
 	font-size: 16px;
 }
 .items:hover {
-	box-shadow:0px 0px 5px 2px #9b0000;
+	box-shadow: 0px 0px 5px 2px #9b0000;
 }
 .fa-cart-plus {
 	color: #d50000;
 }
-.navbar{
+.navbar {
 	background-color: #d50000;
 }
-.navbar-brand, .nav.navbar-nav li a{
+.navbar-brand, .nav.navbar-nav li a {
 	color: #FAFAFA !important;
 }
-.buttons{
+.buttons {
 	margin-left: 10px;
 	text-align: center;
 }
-.error{
+.error {
 	display: none;
+	color: #d50000;
 }
-footer{
-     background-color: #d50000;
-     padding:70px 0px;
-}	       
-
-footer ul li{
-    padding:5px 0px;
+footer {
+	background-color: #d50000;
+	padding: 70px 0px;
 }
-
-.adress span , .contact span , .social span{
-   color: #FAFAFA; 
-   font-weight: 800; 
-   padding-bottom: 10px; 
-   margin-bottom: 20px;
-   display: block;
-   text-transform: uppercase;
-   font-size: 20px;
-   letter-spacing: 3px;
+footer ul li {
+	padding: 5px 0px;
 }
- 
-.adress li p , .contact li a , .social li a{
-    color:#FAFAFA;
-    letter-spacing: 2px;
-    text-decoration:none;
-    font-size:15px;
+.adress span, .contact span, .social span {
+	color: #FAFAFA;
+	font-weight: 800;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+	display: block;
+	text-transform: uppercase;
+	font-size: 20px;
+	letter-spacing: 3px;
 }
-
-.social li{
-    float:left;
+.adress li p, .contact li a, .social li a {
+	color: #FAFAFA;
+	letter-spacing: 2px;
+	text-decoration: none;
+	font-size: 15px;
 }
-
-.adress , .contact , .social {
-    list-style: none;
+.social li {
+	float: left;
 }
-
-.fa{
-    color:#6B5E6B;
-    margin-right: 15px;
-    font-size:14px;
+.adress, .contact, .social {
+	list-style: none;
 }
-
-.dropdown-menu,.dropdown-toggle:active, .open ,.dropdown-toggle{
+.fa {
+	color: #6B5E6B;
+	margin-right: 15px;
+	font-size: 14px;
+}
+.dropdown-menu, .dropdown-toggle:active, .open, .dropdown-toggle {
 	background-color: #d50000 !important;
 	text-align: center;
 }
-.dropdown-menu li a:hover{
+.dropdown-menu li a:hover {
 	background-color: #9b0000 !important;
+}
+.btext {
+	font-size: 20px;
+}
+/* 
+absolute positioning */
+.inner-addon {
+	position: relative;
+}
+/* style glyph */
+.inner-addon .fas {
+	position: absolute;
+	padding: 10px;
+	pointer-events: none;
+}
+/* align glyph */
+.left-addon .fas {
+	left: 0px;
+}
+.right-addon .fas {
+	right: 0px;
+}
+/* add padding  */
+.left-addon input {
+	padding-left: 30px;
+}
+.right-addon input {
+	padding-right: 30px;
+}
+.fa-check-circle {
+	color: limegreen !important;
+}
+.fa-times-circle {
+	color: red !important;
 }

@@ -25,7 +25,7 @@ function UserLogin(email, password) {
 			uemail: email,
 			uuname: email,
 			upass: password
-			
+
 		}),
 
 		dataType: 'json',
@@ -46,10 +46,13 @@ function UserLogin(email, password) {
 }
 
 function UserType(type) {
+
 	"use strict";
 	if (type === '0') {
-		alert("normal");
+		window.location.href = "index.html";
 	} else if (type === '1') {
 		alert("admin");
 	}
+
+
 }
