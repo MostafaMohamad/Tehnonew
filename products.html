@@ -201,7 +201,7 @@
           </ul>
         </div>
         <br>
-        <table class="table table-bordered table-hover" id="table-products">
+        <table class="table table-bordered table-hover text-center" id="table-products">
           <thead>
             <tr>
               <th class="col-xs-1">Name</th>
@@ -211,6 +211,7 @@
               <th class="col-xs-1">Price</th>
               <th class="col-xs-1">Description</th>
               <th class="col-xs-1">Image</th>
+              <th class="col-xs-1">Tools</th>
             </tr>
           </thead>
           <tbody id="pdt-table">
@@ -220,7 +221,7 @@
       <div id="pdt-info" class="tab-pane fade">
         <div class="tab-content"> <br>
           <div id="product-info" class="tab-pane fade in active">
-			  <h3>Product Info</h3>
+            <h3>Product Info</h3>
             <div class="form-group col-xs-6">
               <label for="pdt-name">Name:</label>
               <input type="text" class="form-control" id="pdt-name">
@@ -232,7 +233,6 @@
             <div class="form-group col-xs-6">
               <label for="pdt-subc">Subcategory:</label>
               <select class="form-control" id="pdt-subc" style="width: 100%;">
-				  
               </select>
             </div>
             <div class="form-group col-xs-6">
@@ -257,19 +257,18 @@
           </div>
           <div id="specs" class="tab-pane fade">
             <h3>Specs</h3>
-			  <div class="form-group col-xs-5">
-              <select class="form-control spec-name" style="width: 100%;">  
+            <div class="form-group col-xs-5">
+              <select class="form-control spec-name" style="width: 100%;">
               </select>
             </div>
-			  <div class="form-group col-xs-5">
+            <div class="form-group col-xs-5">
               <input type="text" class="form-control spec-val">
             </div>
-			  <div id="specs-body">
-			  </div>
-			  <div class="form-group col-xs-2">
+            <div id="specs-body"> </div>
+            <div class="form-group col-xs-2">
               <button class="btn btn-primary form-control fas fa-plus-circle" id="new-spec"></button>
             </div>
-			  <div class="form-group col-xs-2">
+            <div class="form-group col-xs-2">
               <button class="btn btn-primary form-control"  id="imup">Next</button>
             </div>
           </div>

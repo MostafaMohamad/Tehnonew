@@ -1,3 +1,11 @@
+<?php 
+header( 'Access-Control-Allow-Origin: *' );
+require_once( 'ws/DAL.class.php' );
+if(isset($_GET["id"])){
+	echo("hello".$_GET["id"]);
+}
+
+?>
 <!doctype html>
 <html>
 <head>

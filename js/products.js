@@ -23,9 +23,9 @@ $(window).ready(function () {
 		alert($(".spec-name").eq($(".spec-val").index(this)).val());
 	});*/
 
-	$("#imup").click(function () {
+	/*$("#imup").click(function () {
 		UploadImage();
-	});
+	});*/
 
 });
 
@@ -68,9 +68,11 @@ function PopulateProducts(pdts) {
 		items += "<td>" + pdts[i].product_price + "</td>";
 		items += "<td>" + pdts[i].product_description + "</td>";
 		items += "<td><img src='" + pdts[i].product_image + "'></td>";
+		items += '<td class="col-lg-1"><button class="btn del"><i class="fa fa-trash"></i></button><p> </p><button class="btn edt"><i class="fas fa-edit"></i></button></td>';
 		items += "</tr>";
 	}
 	$("#pdt-table").empty().append(items);
+	
 }
 
 function FillOptions() {
