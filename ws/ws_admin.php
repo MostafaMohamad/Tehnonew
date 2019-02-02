@@ -5,7 +5,7 @@ require_once( 'DAL.class.php' );
 if ( isset( $_GET[ "op" ] ) ) {
 	//Get sub categories
 	if ( $_GET[ "op" ] == "subcname" ) {
-		$sql = "SELECT subc_name FROM sub_categories, categories WHERE sub_categories.category_id = categories.category_id AND categories.category_name ='" . $_GET[ "ct_name" ] . "'";
+		$sql = "SELECT subc_name FROM sub_categories, categories WHERE sub_categories.category_id = categories.category_id AND categories.category_name ='" . $_GET[ "ct_name" ] . "' ORDER BY subc_name";
 		try {
 			$db = new DAL();
 			$data = $db->getData( $sql );
@@ -40,7 +40,7 @@ if ( isset( $_GET[ "op" ] ) ) {
 			$data = $db->getData( $sql );
 
 			header( "Content-type:application/json" );
-			echo json_encode( $data );
+			echo json_encode( $data);
 		} catch ( Exception $e ) {
 			echo - 1;
 		}
@@ -98,10 +98,10 @@ if ( isset( $_GET[ "op" ] ) ) {
 		$specs_nb = count( $names );
 		$val = "";
 		for ( $i = 0; $i < $specs_nb; $i++ ) {
-			$val .= "(";
-			$val .= "'".$_GET["pid"]."',";
-			$val .= "(SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name='".$names[$nkey[$i]]."'),";
-			$val .= "'".$values[$vkey[$i]]."'),";
+			$val .= "("
+			. "'".$_GET["pid"]."',"
+			. "(SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name='".$names[$nkey[$i]]."'),"
+			. "'".$values[$vkey[$i]]."'),";
 		}
 		
 		$qry = substr($val,0,-1);

@@ -2,8 +2,10 @@
 $(window).ready(function () {
 	'use strict';
 	window.serverURL = "http://localhost/technonew/ws/";
-	GetProducts();
 
+	$("#allpdttbl").DataTable({
+		"pagingType": "full_numbers"
+	});
 
 	$("#pdt-subc").select2();
 	FillOptions();
@@ -29,49 +31,6 @@ $(window).ready(function () {
 
 });
 
-function GetProducts() {
-	'use strict';
-	$.ajax({
-		type: 'GET',
-		url: window.serverURL + "ws_admin.php",
-		data: ({
-			op: "getpdts"
-
-		}),
-
-		dataType: 'json',
-		timeout: 5000,
-		success: function (data, textStatus, xhr) {
-			data = JSON.parse(xhr.responseText);
-			if (data === null) {
-				$("#pdt-table").empty();
-			} else if (data !== null) {
-				var products = data;
-				PopulateProducts(products);
-			}
-		},
-		error: function (xhr, status, errorThrown) {
-			alert(status + errorThrown);
-		}
-	});
-}
-
-function PopulateProducts(pdts) {
-	'use strict';
-	var items = '';
-	for (var i = 0; i < pdts.length; i++) {
-		items += "<tr>";
-		items += "<td>" + pdts[i].product_name + "</td>";
-		items += "<td>" + pdts[i].model_number + "</td>";
-		items += "<td>" + pdts[i].subc_name + "</td>";
-		items += "<td>" + pdts[i].product_brand + "</td>";
-		items += "<td>" + pdts[i].product_price + "</td>";
-		items += "<td>" + pdts[i].product_description + "</td>";
-		items += "<td><img src='" + pdts[i].product_image + "'></td>";
-		items += "</tr>";
-	}
-	$("#pdt-table").empty().append(items);
-}
 
 function FillOptions() {
 	'use strict';
@@ -258,7 +217,7 @@ function AddPdtSpecs(pid, specs_names, specs_values) {
 			if (data === null) {
 
 			} else if (data !== null) {
-				UploadAllImages(pid);
+				//UploadAllImages(pid);
 			}
 		},
 		error: function (xhr, status, errorThrown) {
@@ -267,7 +226,36 @@ function AddPdtSpecs(pid, specs_names, specs_values) {
 	});
 }
 
-function UploadAllImages(pid){
+function UploadAllImages(pid) {
 	'use strict';
-	
+	var data = new FormData();
+	var file = $("#allimgs");
+	var fileSize = file[0].files.length;
+	var fileList = [];
+	var filename = $("#pdt-name").val() + $("#pdt-model").val();
+
+	for (var i = 0; i < fileSize; i++) {
+		fileList.push(file[0].files[i]);
+		data.append('file[]', file[0].files[i], filename);
+	}
+	$.ajax({
+		type: 'post',
+		url: window.serverURL + 'upload.php',
+		processData: false,
+		contentType: false,
+		data: data,
+		success: function (response) {
+			if (response !== null) {
+				var p_image = response;
+				AddNewProduct(p_image);
+			} else {
+
+			}
+		},
+		error: function (err) {
+			alert(err);
+			$(".error").css("display", "inline-block");
+		}
+	});
+
 }
