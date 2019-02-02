@@ -15,7 +15,7 @@ if ( isset( $_FILES[ 'file' ] ) && !empty( $_FILES[ 'file' ] ) ) {
 				$now->setTimezone( new DateTimeZone( 'Asia/Beirut' ) );
 				$name = ( $now->format( 'dmYHis' ) ). $i . ".jpeg";
 				move_uploaded_file( $_FILES[ "file" ][ "tmp_name" ][ $i ], $location . '/' . $name );
-				echo $name . ".jpeg";
+				echo ($name.",");
 
 			}
 		}

@@ -12,7 +12,7 @@ if ( isset( $_FILES[ 'file' ] ) ) {
 	$now->setTimezone( new DateTimeZone( 'Asia/Beirut' ) );
 	$name = ( $now->format( 'dmYHis' ) ) . ".jpeg";
 
-	if ( move_uploaded_file( $tmp_name, $location . '/' . $name ) ) {
+	if ( move_uploaded_file( $tmp_name, $location . '/' . $name) ) {
 		echo $name;
 	}
 }

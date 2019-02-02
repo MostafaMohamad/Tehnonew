@@ -418,3 +418,5 @@
 2019-01-27 09:43:54 : SQL (SELECT * FROM products, sub_categories WHERE products.subc_id = sub_categories_id)
 2019-01-27 10:01:14 : SQL (INSERT INTO pdt_specs (product_id, spec_id, value) VALUES ('7',(SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name=''),''),('7',(SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name=''),''),('7',(SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name=''),''))
 >>>>>>> Technonew/master
+
+2019-01-31 11:08:59 : SQL (INSERT INTO products (product_name, model_number, subc_id, product_price, product_image , product_brand, product_description) VALUES ('Note9','SM-N942C',(SELECT subc_id from sub_categories WHERE subc_name= 'Smart Phones'),'1019','31012019130859.jpeg','Samsung','New 2019'))
