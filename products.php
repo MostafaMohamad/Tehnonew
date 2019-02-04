@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -196,45 +195,43 @@
 							<li><a href="#"><span class="fas fa-sort"></span> Sort</a>
 							</li>
 							<li>
-								<select class="form-control" id="pdt-status" required>
-									<option>All Products</option>
-									<option>Enabled Products</option>
-									<option>Disabled Products</option>
-									<option>Featured Products</option>
-									<option></option>
-									<option></option>
+								<select class="form-control" id="pdt-status" onchange="location = this.value;">
+									<option value="products.php?op=products" <?php if($_GET[ 'op']=="products" ){echo( 'selected="selected"');}?> >All Products</option>
+									<option value="products.php?op=enabled" <?php if($_GET[ 'op']=="enabled" ){echo( 'selected="selected"');}?> >Enabled Products</option>
+									<option value="products.php?op=disabled" <?php if($_GET[ 'op']=="disabled" ){echo( 'selected="selected"');}?> >Disabled Products</option>
+									<option value="products.php?op=featured" <?php if($_GET[ 'op']=="featured" ){echo( 'selected="selected"');}?> >Featured Products</option>
 								</select>
 							</li>
-							<div class="input-group pull-right col-lg-4 col-sm-4 col-md-4 col-xs-12">
-								<input type="text" class="form-control" placeholder="Search">
-								<div class="input-group-btn">
-									<button class="btn btn-default" type="submit"> <i class="glyphicon glyphicon-search"></i> </button>
-								</div>
+							<div class="input-group pull-right col-sm-4 col-xs-12">
+								<input type="text" class="form-control" placeholder="Search" id="tbl-search">
+								<span class="input-group-addon"><i class="fas fa-search"></i></span>
 							</div>
 						</ul>
 					</div>
 					<br>
-				</div>
-				<table class="table table-bordered table-hover text-center" id="allpdttbl">
-					<thead>
-						<tr>
-							<th class="col-xs-1">Name</th>
-							<th class="col-xs-1">Model number</th>
-							<th class="col-xs-1">Subcategory</th>
-							<th class="col-xs-1">Brand</th>
-							<th class="col-xs-1">Price</th>
-							<th class="col-xs-1">Description</th>
-							<th class="col-xs-1">Image</th>
-							<th class="col-xs-1">Tools</th>
-						</tr>
-					</thead>
-					<tbody>
+					<table class="table table-bordered table-hover text-center" id="allpdttbl">
+						<thead>
+							<tr>
+								<th class="col-xs-1">Name</th>
+								<th class="col-xs-1">Model number</th>
+								<th class="col-xs-1">Subcategory</th>
+								<th class="col-xs-1">Brand</th>
+								<th class="col-xs-1">Price</th>
+								<th class="col-xs-1">Description</th>
+								<th class="col-xs-1">Image</th>
+								<th class="col-xs-1">Tools</th>
+								<th class="col-xs-1">Status</th>
+							</tr>
+						</thead>
+						<tbody>
 
-						<?php
-						include('products-mg.php');
-						?>
-					</tbody>
-				</table>
+							<?php
+							include( 'products-mgmt.php' );
+							?>
+						</tbody>
+					</table>
+				</div>
+
 				<div id="pdt-info" class="tab-pane fade">
 					<div class="tab-content"> <br>
 						<div id="product-info" class="tab-pane fade in active">
@@ -252,12 +249,6 @@
 								<select class="form-control" id="pdt-subc" style="width: 100%;">
               </select>
 							
-
-
-
-
-
-
 
 
 							</div>
@@ -295,6 +286,7 @@
 
 
 
+
 							</div>
 							<div class="form-group col-xs-5">
 								<input type="text" class="form-control spec-val">
@@ -304,14 +296,102 @@
 								<button class="btn btn-primary form-control fas fa-plus-circle" id="new-spec"></button>
 							</div>
 							<div class="form-group col-xs-2">
-								<button class="btn btn-primary form-control" id="imup">Next</button>
+								<button class="btn btn-primary form-control" data-toggle="tab" href="#upload-images">Next</button>
 							</div>
 						</div>
-						<div id="menu21" class="tab-pane fade">
-							<h3>Menu 2</h3>
-							<p>Some content in menu 2.</p>
+						<div id="upload-images" class="tab-pane fade">
+							<h3>More details</h3>
+							<div class="form-group col-xs-5">
+								<label for="images">Product photos:</label>
+								<input type="file" name="images[]" id="images" class="form-control" multiple>
+								<button class="btn btn-primary form-control" id="imup">Save</button>
+							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+			<!-- Add to Featured Modal -->
+			<div id="addtoftd" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title" id="pdtname"></h4>
+							<h6 class="modal-title" id="pdtmodel"></h6>
+						</div>
+						<div class="modal-body">
+							<p>Are you sure you want to add this product to <b>featured products</b>?</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" id="save-ftd">Save</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!--Remove from featured Modal -->
+			<div id="rm-ftd" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title" id="fpdtname"></h4>
+							<h6 class="modal-title" id="fpdtmodel"></h6>
+						</div>
+						<div class="modal-body">
+							<p>Are you sure you want to remove this product from <b>featured products</b>?</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" id="save-nftd">Save</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!--Disable a product Modal -->
+			<div id="disable" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title" id="dpdtname"></h4>
+							<h6 class="modal-title" id="dpdtmodel"></h6>
+						</div>
+						<div class="modal-body">
+							<p>Are you sure you want to <b>disable</b> this product?</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" id="disable-pdt">Save</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!--Enable a product Modal -->
+			<div id="enable" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title" id="epdtname"></h4>
+							<h6 class="modal-title" id="epdtmodel"></h6>
+						</div>
+						<div class="modal-body">
+							<p>Are you sure you want to <b>enable</b> this product?</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" id="enable-pdt">Save</button>
+						</div>
+					</div>
+
 				</div>
 			</div>
 		</div>

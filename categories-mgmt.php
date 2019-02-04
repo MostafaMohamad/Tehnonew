@@ -143,7 +143,7 @@
             </ul>
             <!-- /.nav-second-level --> 
           </li>
-          <li> <a href="wm.html"><i class="fas fa-globe"></i> Website managment</a></li>
+          <li> <a href="categories-mgmt.php"><i class="fas fa-globe"></i> Website managment</a></li>
         </ul>
       </div>
       <!-- /.sidebar-collapse --> 

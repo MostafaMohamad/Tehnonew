@@ -420,3 +420,6 @@
 >>>>>>> Technonew/master
 
 2019-01-31 11:08:59 : SQL (INSERT INTO products (product_name, model_number, subc_id, product_price, product_image , product_brand, product_description) VALUES ('Note9','SM-N942C',(SELECT subc_id from sub_categories WHERE subc_name= 'Smart Phones'),'1019','31012019130859.jpeg','Samsung','New 2019'))
+2019-02-03 10:16:04 : SQL (UPDATE products SET featured_date = CURRENT_TIMESTAMP WHERE model_number='985')
+2019-02-04 12:36:48 : SQL (INSERT INTO product_images (product_id, img1, img2, img3, img4) VALUES ('15',))
+2019-02-04 12:41:03 : SQL (INSERT INTO product_images (product_id, img1, img2, img3, img4) VALUES ('16',))
