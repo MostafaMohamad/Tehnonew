@@ -1,33 +1,54 @@
 <?php
 include_once( "ws/DAL.class.php" );
 
-if ( isset( $_GET[ "pid" ] ) ) {
-	$sql = "SELECT * FROM products WHERE products.product_id = '" . $_GET[ 'pid' ] . "'";
+if ( isset( $_GET[ "op" ] ) ) {
+	if ( $_GET[ "op" ] == "allproducts" ) {
+		$sql = "SELECT * FROM products";
 	try {
 		$db = new DAL();
 		$data = $db->getData( $sql );
-		if ( empty( $data ) ) {
-			include( "ws/404-notfound.php" );
+		if ( count($data) > 0  ) {
+			$s="";
+			for ( $i = 0; $i < count($data); $i++) {
+		 $lst = '<div class="col-lg-3 col-md-4 col-sm-6">
+			<div class="items col-xs-12">
+			<h5>' . $data[$i]["product_brand"].  '</h5>
+			<h5><strong>' . $data[$i]["product_name"] . '</strong></h5>
+			<a href="product-details.php?pid='.$data[$i]["product_id"].'"><img class="img-responsive img-home-portfolio" src="img/products/'.$data[$i]["product_name"].$data[$i]["model_number"].'/' . $data[$i]["product_image"] . '"></a>
+			<div class="prices">
+			<h4 class = "col-xs-6" > '.$data[$i]["product_price"].' &#36; </h4>
+			<h4 class= "pull-right" > <a href = "#" > <span class = "fas fa-cart-plus" > </span></a> </h4>
+			</div></div></div>';
+		$s .= $lst;
+	}
+		
 		}
 
 
 	} catch ( Exception $e ) {
 		echo - 1;
 	}
+		
+		
 
-} else {
+	} else if ( $_GET[ "op" ] == "featured" ) {
+
+	} else if ( $_GET[ "op" ] == "newproducts" ) {
+
+	} else if ( $_GET[ "op" ] == "recommended" ) {
+
+	} else {
+		include( "ws/404-notfound.php" );
+	}
+
+} else if ( isset( $_GET[ "keyword" ] ) ) {} else {
 	include( "ws/404-notfound.php" );
 }
 
-
-
-
-
 ?>
-
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Latest compiled and minified CSS -->
@@ -41,10 +62,8 @@ if ( isset( $_GET[ "pid" ] ) ) {
 
 	<!-- Latest compiled JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
+	<title>Technonew</title>
 	<link type="text/css" rel="stylesheet" href="css/all.min.css">
-	<link type="text/css" rel="stylesheet" href="css/lightbox.css">
-	<script src="js/lightbox.js"></script>
-	<title>Product | Details</title>
 </head>
 
 <body>
@@ -103,62 +122,32 @@ if ( isset( $_GET[ "pid" ] ) ) {
 				<ul class="nav navbar-nav" id="categories">
 					<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#">Computers <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Page 1-1</a>
-							</li>
-							<li><a href="#">Page 1-2</a>
-							</li>
-							<li><a href="#">Page 1-3</a>
-							</li>
+
 						</ul>
 					</li>
 					<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#">Computer Parts <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Page 1-1</a>
-							</li>
-							<li><a href="#">Page 1-2</a>
-							</li>
-							<li><a href="#">Page 1-3</a>
-							</li>
+
 						</ul>
 					</li>
 					<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#">Computer Accessories<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Page 1-1</a>
-							</li>
-							<li><a href="#">Page 1-2</a>
-							</li>
-							<li><a href="#">Page 1-3</a>
-							</li>
+
 						</ul>
 					</li>
 					<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mobile Phones<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Page 1-1</a>
-							</li>
-							<li><a href="#">Page 1-2</a>
-							</li>
-							<li><a href="#">Page 1-3</a>
-							</li>
+
 						</ul>
 					</li>
 					<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mobile Accessories <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Page 1-1</a>
-							</li>
-							<li><a href="#">Page 1-2</a>
-							</li>
-							<li><a href="#">Page 1-3</a>
-							</li>
+
 						</ul>
 					</li>
 					<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#">Electronics<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Page 1-1</a>
-							</li>
-							<li><a href="#">Page 1-2</a>
-							</li>
-							<li><a href="#">Page 1-3</a>
-							</li>
+
 						</ul>
 					</li>
 				</ul>
@@ -166,106 +155,71 @@ if ( isset( $_GET[ "pid" ] ) ) {
 		</div>
 		<hr class="hidden-xs">
 	</div>
-	<div class="container">
-		
-		<div class="col-xs-6 text-center" id="images">
-			<?php 
-		include_once("ws/DAL.class.php");
-		$sql = "SELECT * FROM products WHERE products.product_id = '".$_GET['pid']."'";
+	<div class="section">
+		<div class="container">
+			<p>
+				<h2>Featured Products</h2>
+			</p>
+			<div class="row ftrd">
+				<div id="product-list"><?php echo($s); ?> </div>
+			</div>
+			<!-- /.row -->
+			<br>
+			<hr class="col-xs-6 col-xs-offset-3" style="border-top: 1px solid #d50000 !important;">
+			<br>
+			<br>
+			<br>
+			<br>
 
-		try {
-			$db = new DAL();
-			$data = $db->getData( $sql );
-			
-			if(!empty($data) ){
-				echo('<a href="img/products/'.$data[0]["product_name"].$data[0]["model_number"].'/'.$data[0]["product_image"].'" data-lightbox="roadtrip">
-		  <img style="width:500px; height:500px;" class="img-responsive img-home-portfolio" src="img/products/'.$data[0]["product_name"].$data[0]["model_number"].'/'.$data[0]["product_image"].'"></a>');
-			
-			}
-		} catch ( Exception $e ) {
-			echo - 1;
-		}	
-		
-		
-		
-		
-		?>
-		
-
-
-
-
-			<div class="col-xs-12">
-				<a href="img/Samsung-Galaxy-Note-9-PNG.png" data-lightbox="roadtrip">
-			<img style="width: 96px; height: 96px; display: inline;" class="img-responsive img-home-portfolio" src="img/Samsung-Galaxy-Note-9-PNG.png"> 
-		</a>
-			
-
-
-
-
-				<a href="img/Samsung-Galaxy-Note-9-PNG.png" data-lightbox="roadtrip">
-			<img style="width: 96px; height: 96px; display: inline;" class="img-responsive img-home-portfolio" src="img/Samsung-Galaxy-Note-9-PNG.png"> 
-		</a>
-			
-
-
-
-
-				<a href="img/Samsung-Galaxy-Note-9-PNG.png" data-lightbox="roadtrip">
-			<img style="width: 96px; height: 96px; display: inline;" class="img-responsive img-home-portfolio" src="img/Samsung-Galaxy-Note-9-PNG.png">
-		</a>
-			
-
-
-
-
-				<a href="img/Samsung-Galaxy-Note-9-PNG.png" data-lightbox="roadtrip">
-			<img style="width: 96px; height: 96px; display: inline;" class="img-responsive img-home-portfolio" src="img/Samsung-Galaxy-Note-9-PNG.png">
-		</a>
-			
-
-
-
-
+</body>
+<div class="container">
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5 col-md-5 col-sm-4 col-xs-12">
+					<ul class="adress">
+						<span>Address</span>
+						<li>
+							<p>Tripoli - Tal - Arab Bank Building</p>
+						</li>
+						<li>
+							<p>06/123456</p>
+						</li>
+						<li>
+							<p>info@technonew.com</p>
+						</li>
+					</ul>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+					<ul class="contact">
+						<span>Pages</span>
+						<li><a href="#">Home</a>
+						</li>
+						<li><a href="#">Products</a>
+						</li>
+						<li><a href="#">Find your PC</a>
+						</li>
+						<li><a href="#">Contact-US</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+					<ul class="social">
+						<span>Social</span>
+						<li><a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+						</li>
+						<li><a href="#"><i class="fab fa-instagram fa-2x"></i></a>
+						</li>
+						<li><a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
+						</li>
+						<li><a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+						</li>
+						<li><a href="#"><i class="fab fa-google-plus fa-2x"></i></a>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
-		<div class="col-md-6">
-			<?php 
-			include_once("ws/DAL.class.php");
-			$sql = "SELECT products.product_name FROM products WHERE products.product_id = '".$_GET['pid']."'";
-
-		try {
-			$db = new DAL();
-			$data = $db->getData( $sql );
-			if($data != null){
-				echo("<h1>".$data[0]['product_name']."</h1><hr><br><br><br>");
-			}
-			
-			
-		} catch ( Exception $e ) {
-			echo - 1;
-		}
-			
-		$sql = "SELECT specifications.spec_name, pdt_specs.value FROM specifications,pdt_specs WHERE pdt_specs.product_id = '".$_GET["pid"]."' AND pdt_specs.spec_id = specifications.spec_id ";
-
-		try {
-			$db = new DAL();
-			$data = $db->getData( $sql );
-			
-			if(count($data) > 0 ){
-				echo("<h4><b>Product details</b></h4><ul>");
-				for($i = 0 ; $i < count($data) ; $i++){
-					echo( "<li><b>".$data[$i]["spec_name"].":</b> ".$data[$i]["value"]."</li>");
-				}
-				echo("</ul>");
-			}
-		} catch ( Exception $e ) {
-			echo - 1;
-		}	
-			?>
-
-		</div>
-	</div>
-</body>
+	</footer>
+</div>
 </html>

@@ -40,7 +40,7 @@ function ViewProducts(data) {
 			'<div class="items col-xs-12">'+
 			'<h5>' + data[i].product_brand + '</h5>'+
 			'<h5><strong>' + data[i].product_name + '</strong></h5>'+
-			'<a href="#"><img class="img-responsive img-home-portfolio" src="'+location+data[i].product_name+data[i].model_number+'/' + data[i].product_image + '"></a>'+
+			'<a href="product-details.php?pid='+data[i].product_id+'"><img class="img-responsive img-home-portfolio" src="'+location+data[i].product_name+data[i].model_number+'/' + data[i].product_image + '"></a>'+
 			'<div class="prices">'+
 			'<h4 class = "col-xs-6" > '+data[i].product_price+' &#36; </h4>'+
 			'<h4 class= "pull-right" > <a href = "#" > <span class = "fas fa-cart-plus" > </span></a> </h4>'+
