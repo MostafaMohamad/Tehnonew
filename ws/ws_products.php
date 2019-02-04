@@ -16,12 +16,8 @@ if ( isset( $_GET[ "op" ] ) ) {
 		} catch ( Exception $e ) {
 			echo - 1;
 		}
-	}
-}
-//get featured products
-if ( isset( $_GET[ "op" ] ) ) {
-	if ( $_GET[ "op" ] == "featured" ) {
-		$sql = "SELECT * FROM products,featured,sub_categories WHERE products.product_id = featured.product_id AND featured.active = 1 AND products.subc_id = sub_categories.subc_id";
+	} else if ( $_GET[ "op" ] == "featured" ) {
+		$sql = "SELECT * FROM products WHERE products.Featured = 1 GROUP BY product_id DESC LIMIT 4";
 
 		try {
 			$db = new DAL();
@@ -34,12 +30,10 @@ if ( isset( $_GET[ "op" ] ) ) {
 			echo - 1;
 		}
 	}
-}
 
-//get new products
-if ( isset( $_GET[ "op" ] ) ) {
-	if ( $_GET[ "op" ] == "newproducts" ) {
-		$sql = "SELECT * FROM users WHERE u_birth >= DATE_ADD(NOW(), INTERVAL -2 MONTH) ORDER BY u_id DESC LIMIT 3";
+	//get new products
+	else if ( $_GET[ "op" ] == "newproducts" ) {
+		$sql = "SELECT * FROM products WHERE product_added >= DATE_ADD(NOW(), INTERVAL -2 MONTH) ORDER BY product_id DESC LIMIT 4";
 
 		try {
 			$db = new DAL();
@@ -52,5 +46,23 @@ if ( isset( $_GET[ "op" ] ) ) {
 			echo - 1;
 		}
 	}
+
+	//get sub-cat
+	else if ( $_GET[ "op" ] == "subcat" ) {
+		$sql = "SELECT subc_name FROM sub_categories WHERE sub_categories.category_id = (SELECT category_id FROM categories WHERE categories.category_name = '".$_GET["catname"]."') ORDER BY subc_name";
+
+		try {
+			$db = new DAL();
+			$data = $db->getData( $sql );
+
+			header( "Content-type:application/json" );
+			echo json_encode( $data );
+
+		} catch ( Exception $e ) {
+			echo - 1;
+		}
+
+	}
 }
+
 ?>

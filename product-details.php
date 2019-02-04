@@ -53,7 +53,7 @@ if ( isset( $_GET[ "pid" ] ) ) {
 			<div id="navbar" class="navbar navbar-default">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".mainnav"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-					<a class="navbar-brand" href="index.html">TECHNONEW</a> </div>
+					<a class="navbar-brand" href="index.php">TECHNONEW</a> </div>
 				<div class="collapse navbar-collapse mainnav">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown hidden-md hidden-lg hidden-sm"> <a class="dropdown" data-toggle="dropdown" href="#"><span class="fas fa-list-ol"></span> Categories <span class="caret"></span></a>
@@ -268,4 +268,5 @@ if ( isset( $_GET[ "pid" ] ) ) {
 		</div>
 	</div>
 </body>
+	<script src="js/tools.js"></script>
 </html>

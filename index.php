@@ -1,57 +1,21 @@
 <?php
+
 include_once( "ws/DAL.class.php" );
-$sql = '';
-if ( isset( $_GET[ "op" ] ) ) {
-	$sql = "";
-	if ( $_GET[ "op" ] == "allproducts" ) {
-		$sql = "SELECT * FROM products";
-	} else if ( $_GET[ "op" ] == "featured" ) {
-		$sql = "SELECT * FROM products WHERE products.Featured = 1 GROUP BY product_id DESC ";
+$sql = "";
+
+//switch ( $_GET[ "cat" ] ) {
+
+//case "computers":
+//echo( "test" );
+//	break;
+
+//}
 
 
-	} else if ( $_GET[ "op" ] == "newproducts" ) {
-		$sql = "SELECT * FROM products WHERE product_added >= DATE_ADD(NOW(), INTERVAL -2 MONTH) ORDER BY product_id DESC";
-
-	} else if ( $_GET[ "op" ] == "recommended" ) {
-
-	}
-} else if ( isset( $_GET[ "keyword" ] ) ) {
-	$sql = "SELECT * FROM products WHERE product_added >= DATE_ADD(NOW(), INTERVAL -2 MONTH) ORDER BY product_id DESC";
-
-
-} else if ( isset( $_GET[ "category" ] ) ) {
-	$sql = "SELECT * FROM products WHERE products.subc_id = (SELECT subc_id FROM sub_categories WHERE sub_categories.subc_name = '" . $_GET[ "category" ] . "')";
-
-
-} else {
-	include( "ws/404-notfound.php" );
-}
-
-if ( !empty( $sql ) ) {
-
-	try {
-		$db = new DAL();
-		$data = $db->getData( $sql );
-		if ( $data  != null ) {
-			$s = "";
-			for ( $i = 0; $i < count( $data ); $i++ ) {
-				$lst = '<div class="col-lg-3 col-md-4 col-sm-6">
-			<div class="items col-xs-12">
-			<h5>' . $data[ $i ][ "product_brand" ] . '</h5>
-			<h5><strong>' . $data[ $i ][ "product_name" ] . '</strong></h5>
-			<a href="product-details.php?pid=' . $data[ $i ][ "product_id" ] . '"><img class="img-responsive img-home-portfolio" src="img/products/' . $data[ $i ][ "product_name" ] . $data[ $i ][ "model_number" ] . '/' . $data[ $i ][ "product_image" ] . '"></a>
-			<div class="prices">
-			<h4 class = "col-xs-6" > ' . $data[ $i ][ "product_price" ] . ' &#36; </h4>
-			<h4 class= "pull-right" > <a href = "#" > <span class = "fas fa-cart-plus" > </span></a> </h4>
-			</div></div></div>';
-				$s .= $lst;
-			}
-		}
-	} catch ( Exception $e ) {
-		echo - 1;
-	}
-}
 ?>
+
+
+
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -111,14 +75,27 @@ if ( !empty( $sql ) ) {
 		<button class="btn btn-default col-lg-4 col-sm-4 col-md-4 col-xs-12">Search for a PC</button>
 		<div class="col-xs-4"><br>
 		</div>
-		<div class="input-group pull-right col-lg-4 col-sm-4 col-md-4 col-xs-12">
-			<input type="text" class="form-control" placeholder="Search">
-			<div class="input-group-btn">
-				<button class="btn btn-default" type="submit"> <i class="glyphicon glyphicon-search"></i> </button>
-			</div>
+		<div class="input-group col-xs-12 col-sm-4">
+			<input id="search" type="text" class="form-control" name="search" placeholder="Search">
+			<span class="btn input-group-addon right-addon"><i class="fas fa-search"></i> </span>
 		</div>
 	</div>
 	<br>
+	<div class="container">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<!-- Indicators -->
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+				<div class="item active"> <a href="login.php"><img src="img/2.jpg" alt="Los Angeles" style="width:100%;"></a> </div>
+				<div class="item"> <img src="img/1.jpg" alt="Chicago" style="width:100%;"> </div>
+				<div class="item"> <img src="img/3.jpg" alt="New York" style="width:100%;"> </div>
+			</div>
+
+			<!-- Left and right controls -->
+			<a class="left carousel-control" href="#myCarousel" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span> <span class="sr-only">Previous</span> </a> <a class="right carousel-control" href="#myCarousel" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span> <span class="sr-only">Next</span> </a> </div>
+		<hr>
+	</div>
 	<div class="container">
 		<div class="navbar navbar-default hidden-xs">
 			<div class="navbar-header">
@@ -126,34 +103,38 @@ if ( !empty( $sql ) ) {
 			</div>
 			<div class="collapse navbar-collapse ctg">
 				<ul class="nav navbar-nav" id="categories">
-					<li class="dropdown"> <a class="dropdown-toggle cat" data-toggle="dropdown" href="#">Computers <span class="caret"></span></a>
+					<li class="dropdown"> <a class="dropdown-toggle cat"  data-toggle="dropdown" href="#">Computers <span class="caret"></span></a>
 						<ul class="dropdown-menu">
+							
 
 						</ul>
-					</li>
-					<li class="dropdown"> <a class="dropdown-toggle cat" data-toggle="dropdown" href="#">Computer Parts <span class="caret"></span></a>
-						<ul class="dropdown-menu">
 
+					</li>
+					<li class="dropdown"> <a class="dropdown-toggle cat" data-toggle="dropdown" id="comparts" href="#">Computer Parts <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							
 						</ul>
 					</li>
 					<li class="dropdown"> <a class="dropdown-toggle cat" data-toggle="dropdown" href="#">Computer Accessories<span class="caret"></span></a>
 						<ul class="dropdown-menu">
+							
 
 						</ul>
 					</li>
 					<li class="dropdown"> <a class="dropdown-toggle cat" data-toggle="dropdown" href="#">Mobile Phones<span class="caret"></span></a>
 						<ul class="dropdown-menu">
+							
 
 						</ul>
 					</li>
 					<li class="dropdown"> <a class="dropdown-toggle cat" data-toggle="dropdown" href="#">Mobile Accessories <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-
+							
 						</ul>
 					</li>
 					<li class="dropdown"> <a class="dropdown-toggle cat" data-toggle="dropdown" href="#">Electronics<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-
+							
 						</ul>
 					</li>
 				</ul>
@@ -164,39 +145,87 @@ if ( !empty( $sql ) ) {
 	<div class="section">
 		<div class="container">
 			<p>
-				<h2>
-					<?php
-					if ( isset( $_GET[ "op" ] ) ) {
-						switch ( $_GET[ "op" ] ) {
-
-							case "featured":
-								echo( "Featured Products" );
-								break;
-							case "newproducts":
-								echo( "New Products" );
-								break;
-							default:
-								echo( "Products" );
-						}
-					}else if (isset($_GET["category"])){
-						echo($_GET["category"]);
-					}
-
-					?>
-				</h2>
+				<h2>Featured Products</h2>
+				<a href="productslist.php?op=featured">View more <span class="fas fa-eye"></span></a>
 			</p>
 			<div class="row ftrd">
-				<div id="product-list">
-					<?php if(!empty($s)){echo($s);} ?> </div>
+				<div id="product-list"> </div>
 			</div>
 			<!-- /.row -->
 			<br>
 			<hr class="col-xs-6 col-xs-offset-3" style="border-top: 1px solid #d50000 !important;">
 			<br>
 			<br>
+			<h2>New Products</h2>
+			<a href="productslist.php?op=newproducts">View more <span class="fas fa-eye"></span></a>
+			<div class="row ftrd">
+				<div id="new-list"></div>
+			</div>
+			<br>
+			<hr class="col-xs-6 col-xs-offset-3" style="border-top: 1px solid #d50000 !important;">
 			<br>
 			<br>
+			<h2>Recommended Products</h2>
+			<a href="#">View more <span class="fas fa-eye"></span></a>
+			<div class="row ftrd">
+				<div class="col-lg-12 text-center"> </div>
+				<div class="col-lg-3 col-md-4 col-sm-6">
+					<div class="items col-xs-12">
+						<h5>Category</h5>
+						<h5><strong>Some text here about product</strong></h5>
+						<a href="#"> <img class="img-responsive img-home-portfolio" src="img/mouse.png"> </a>
+						<div class="prices">
+							<h4 class="col-xs-4">450 &#36; </h4>
+							<h4 class="col-xs-4"><s> 800 &#36;</s></h4>
+							<h4 class="pull-right"><a href="#"><span class="fas fa-cart-plus"></span></a></h4>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-4 col-sm-6">
+					<div class="items col-xs-12">
+						<h5>Category</h5>
+						<h5><strong>Some text here about product</strong></h5>
+						<a href="#"> <img class="img-responsive img-home-portfolio" src="img/Samsung-Galaxy-Note-9-PNG.png"> </a>
+						<div class="prices">
+							<h4 class="col-xs-4">450 &#36; </h4>
+							<h4 class="col-xs-4"><s> 800 &#36;</s></h4>
+							<h4 class="pull-right"><a href="#"><span class="fas fa-cart-plus"></span></a></h4>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-4 col-sm-6">
+					<div class="items col-xs-12">
+						<h5>Category</h5>
+						<h5><strong>Some text here about product</strong></h5>
+						<a href="#"> <img class="img-responsive img-home-portfolio" src="img/iphone_Xs_64gb_gold_sku_header.png"> </a>
+						<div class="prices">
+							<h4 class="col-xs-4">450 &#36; </h4>
+							<h4 class="col-xs-4"><s> 800 &#36;</s></h4>
+							<h4 class="pull-right"><a href="#"><span class="fas fa-cart-plus"></span></a></h4>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-4 col-sm-6">
+					<div class="items col-xs-12">
+						<h5>Category</h5>
+						<h5><strong>Some text here about product</strong></h5>
+						<a href="#"> <img class="img-responsive img-home-portfolio" src="img/gl73-1.png"> </a>
+						<div class="prices">
+							<h4 class="col-xs-4">450 &#36; </h4>
+							<h4 class="col-xs-4"><s> 800 &#36;</s></h4>
+							<h4 class="pull-right"><a href="#"><span class="fas fa-cart-plus"></span></a></h4>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr>
+		</div>
+		<!-- /.container -->
 
+	</div>
+	<!-- /.section -->
+	<div>
+	</div>
 </body>
 <div class="container">
 	<footer>
@@ -248,5 +277,6 @@ if ( !empty( $sql ) ) {
 		</div>
 	</footer>
 </div>
-	<script src="js/tools.js"></script>
+<script src="js/index.js"></script>
+<script src="js/tools.js"></script>
 </html>
