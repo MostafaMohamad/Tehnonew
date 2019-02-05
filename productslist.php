@@ -6,7 +6,7 @@ if ( isset( $_GET[ "op" ] ) ) {
 	if ( $_GET[ "op" ] == "allproducts" ) {
 		$sql = "SELECT * FROM products";
 	} else if ( $_GET[ "op" ] == "featured" ) {
-		$sql = "SELECT * FROM products WHERE products.Featured = 1 GROUP BY product_id DESC ";
+		$sql = "SELECT * FROM products WHERE products.Featured = 1 GROUP BY featured_date DESC ";
 
 
 	} else if ( $_GET[ "op" ] == "newproducts" ) {

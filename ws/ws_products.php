@@ -17,7 +17,7 @@ if ( isset( $_GET[ "op" ] ) ) {
 			echo - 1;
 		}
 	} else if ( $_GET[ "op" ] == "featured" ) {
-		$sql = "SELECT * FROM products WHERE products.Featured = 1 GROUP BY product_id DESC LIMIT 4";
+		$sql = "SELECT * FROM products WHERE products.Featured = 1 GROUP BY featured_date DESC LIMIT 4";
 
 		try {
 			$db = new DAL();

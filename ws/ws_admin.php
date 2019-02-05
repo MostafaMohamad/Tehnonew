@@ -155,13 +155,13 @@ if ( isset( $_GET[ "op" ] ) ) {
 		$nkey  = array_keys($names);
 		$specs_nb = count( $names );
 		$val = "";
-		for ( $i = 0; $i < $specs_nb; $i++ ) {
+		for ( $i = 0; $i < 4; $i++ ) {
 			$val .= "'".$names[$nkey[$i]]."',";
 		}
 		
 		$qry = substr($val,0,-1);
 		
-		$sql = "INSERT INTO product_images (product_id, img1, img2, img3, img4) VALUES ('".$_GET["pid"]."',".$qry.")";
+		$sql = "INSERT INTO product_images  VALUES ('".$_GET["pid"]."',".$qry.")";
 			try {
 				$db = new DAL();
 				$data = $db->ExecuteQuery( $sql );
