@@ -77,7 +77,7 @@ if ( isset( $_GET[ "op" ] ) ) {
 
 	//Insert new product
 	else if ( $_GET[ "op" ] == "addpdt" ) {
-		$sql = "INSERT INTO products (product_name, model_number, subc_id, product_price, product_image , product_brand, product_description) VALUES ('" . $_GET[ "pname" ] . "','" . $_GET[ "pmodel" ] . "',(SELECT subc_id from sub_categories WHERE subc_name= '" . $_GET[ "subc" ] . "'),'" . $_GET[ "pprice" ] . "','" . $_GET[ "pimage" ] . "','" . $_GET[ "pbrand" ] . "','" . $_GET[ "pdsc" ] . "')";
+		$sql = "INSERT INTO products (product_name, model_number, subc_id, product_price, product_image , product_brand, product_description,Featured,product_status) VALUES ('" . $_GET[ "pname" ] . "','" . $_GET[ "pmodel" ] . "',(SELECT subc_id from sub_categories WHERE subc_name= '" . $_GET[ "subc" ] . "'),'" . $_GET[ "pprice" ] . "','" . $_GET[ "pimage" ] . "','" . $_GET[ "pbrand" ] . "','" . $_GET[ "pdsc" ] . "',0,1)";
 		try {
 			$db = new DAL();
 			$data = $db->ExecuteQuery( $sql );
@@ -117,9 +117,63 @@ if ( isset( $_GET[ "op" ] ) ) {
 				echo - 1;
 			}
 
+	}
+	
+	//Add product to featured
+	else if ( $_GET[ "op" ] == "addtoftd" ) {
+		$sql = "UPDATE products SET featured_date = CURRENT_TIMESTAMP, Featured = '1' WHERE model_number='".$_GET["pmodel"]."'";
+		try {
+			$db = new DAL();
+			$data = $db->ExecuteQuery( $sql );
 
+			header( "Content-type:application/json" );
+			echo json_encode( $data );
+		} catch ( Exception $e ) {
+			
+		}
 
 	}
+	
+	//Remove product from featured
+	else if ( $_GET[ "op" ] == "rmftd" ) {
+		$sql = "UPDATE products SET  Featured = '0' WHERE model_number='".$_GET["pmodel"]."'";
+		try {
+			$db = new DAL();
+			$data = $db->ExecuteQuery( $sql );
+
+			header( "Content-type:application/json" );
+			echo json_encode( $data );
+		} catch ( Exception $e ) {
+			
+		}
+
+	}
+	
+	//Add photos to product
+	else if ( $_GET[ "op" ] == "pdtphotos" ) {
+		$names = $_GET[ "names" ];
+		$nkey  = array_keys($names);
+		$specs_nb = count( $names );
+		$val = "";
+		for ( $i = 0; $i < $specs_nb; $i++ ) {
+			$val .= "'".$names[$nkey[$i]]."',";
+		}
+		
+		$qry = substr($val,0,-1);
+		
+		$sql = "INSERT INTO product_images (product_id, img1, img2, img3, img4) VALUES ('".$_GET["pid"]."',".$qry.")";
+			try {
+				$db = new DAL();
+				$data = $db->ExecuteQuery( $sql );
+
+				header( "Content-type:application/json" );
+				echo json_encode( $data );
+			} catch ( Exception $e ) {
+				echo - 1;
+			}
+
+	}
+
 
 }
 ?>

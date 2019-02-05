@@ -1,3 +1,36 @@
-table th{
+table th {
 	text-align: center !important;
+}
+.fa-check-circle {
+	color: limegreen !important;
+}
+.fa-times-circle {
+	color: red !important;
+}
+.ftd {
+	color: #F8D64E;
+}
+.ftd:hover {
+	color: #FF0004;
+}
+.ftd:active {
+	color: #000E60;
+}
+.ftd:focus {
+	color: #F8D64E;
+}
+.nftd {
+	color: #222222;
+}
+.nftd:hover {
+	color: #FF0004;
+}
+.nftd:active {
+	color: #000E60;
+}
+.nftd:focus {
+	color: #222222;
+}
+.dataTables_filter {
+	display: none;
 }
