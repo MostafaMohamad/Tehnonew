@@ -420,6 +420,7 @@
 >>>>>>> Technonew/master
 
 2019-01-31 11:08:59 : SQL (INSERT INTO products (product_name, model_number, subc_id, product_price, product_image , product_brand, product_description) VALUES ('Note9','SM-N942C',(SELECT subc_id from sub_categories WHERE subc_name= 'Smart Phones'),'1019','31012019130859.jpeg','Samsung','New 2019'))
+<<<<<<< HEAD
 2019-02-03 08:39:41 : SQL (SELECT * FROM users WHERE u_birth >= DATE_ADD(NOW(), INTERVAL -1 MONTH) ORDER BY u_id DESC LIMIT 4)
 2019-02-03 08:40:01 : SQL (SELECT * FROM users WHERE u_birth >= DATE_ADD(NOW(), INTERVAL -2 MONTH) ORDER BY u_id DESC LIMIT 4)
 2019-02-03 08:40:04 : SQL (SELECT * FROM users WHERE u_birth >= DATE_ADD(NOW(), INTERVAL -2 MONTH) ORDER BY u_id DESC LIMIT 4)
@@ -453,3 +454,8 @@
 2019-02-04 10:44:38 : SQL (SELECT subc_name FROM sub_categories WHERE sub_categories.category_id = (SELECT categories.category_id FROM categories WEHRE categories.catogory_name = 'computers'))
 2019-02-04 10:48:25 : SQL (SELECT subc_name FROM sub_categories WHERE sub_categories.category_id = (SELECT categories.category_id FROM categories WHERE categories.catogory_name = 'computers'))
 2019-02-04 10:48:27 : SQL (SELECT subc_name FROM sub_categories WHERE sub_categories.category_id = (SELECT categories.category_id FROM categories WHERE categories.catogory_name = 'computers'))
+=======
+2019-02-03 10:16:04 : SQL (UPDATE products SET featured_date = CURRENT_TIMESTAMP WHERE model_number='985')
+2019-02-04 12:36:48 : SQL (INSERT INTO product_images (product_id, img1, img2, img3, img4) VALUES ('15',))
+2019-02-04 12:41:03 : SQL (INSERT INTO product_images (product_id, img1, img2, img3, img4) VALUES ('16',))
+>>>>>>> Technonew/master
