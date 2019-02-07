@@ -209,27 +209,29 @@
 						</ul>
 					</div>
 					<br>
-					<table class="table table-bordered table-hover text-center" id="allpdttbl">
-						<thead>
-							<tr>
-								<th class="col-xs-1">Name</th>
-								<th class="col-xs-1">Model number</th>
-								<th class="col-xs-1">Subcategory</th>
-								<th class="col-xs-1">Brand</th>
-								<th class="col-xs-1">Price</th>
-								<th class="col-xs-1">Description</th>
-								<th class="col-xs-1">Image</th>
-								<th class="col-xs-1">Tools</th>
-								<th class="col-xs-1">Status</th>
-							</tr>
-						</thead>
-						<tbody>
+					<div class="table-responsive">
+						<table class="table table-bordered table-hover text-center" id="allpdttbl">
+							<thead>
+								<tr>
+									<th class="col-xs-1">Name</th>
+									<th class="col-xs-1">Model number</th>
+									<th class="col-xs-1">Subcategory</th>
+									<th class="col-xs-1">Brand</th>
+									<th class="col-xs-1">Price</th>
+									<th class="col-xs-1">Description</th>
+									<th class="col-xs-1">Image</th>
+									<th class="col-xs-1">Tools</th>
+									<th class="col-xs-1">Status</th>
+								</tr>
+							</thead>
+							<tbody>
 
-							<?php
-							include( 'products-mgmt.php' );
-							?>
-						</tbody>
-					</table>
+								<?php
+								include( 'products-mgmt.php' );
+								?>
+							</tbody>
+						</table>
+					</div>
 				</div>
 
 				<div id="pdt-info" class="tab-pane fade">
@@ -249,6 +251,7 @@
 								<select class="form-control" id="pdt-subc" style="width: 100%;">
               </select>
 							
+
 
 
 							</div>
@@ -278,6 +281,7 @@
 								<select class="form-control spec-name" style="width: 100%;">
               </select>
 							
+
 
 
 

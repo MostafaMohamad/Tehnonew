@@ -1,4 +1,4 @@
-table th {
+table th , #tbl-specs{
 	text-align: center !important;
 }
 .fa-check-circle {

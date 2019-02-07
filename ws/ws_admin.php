@@ -173,6 +173,36 @@ if ( isset( $_GET[ "op" ] ) ) {
 			}
 
 	}
+	
+	//Edit spec
+	else if ( $_GET[ "op" ] == "editspec" ) {
+		$sql = "UPDATE specifications  SET spec_name = '".$_GET["sname"]."' WHERE specifications.spec_id = '".$_GET["sid"]."'";
+			try {
+				$db = new DAL();
+				$data = $db->ExecuteQuery( $sql );
+
+				header( "Content-type:application/json" );
+				echo json_encode( $data );
+			} catch ( Exception $e ) {
+				echo - 1;
+			}
+
+	}
+	
+	//Add spec
+	else if ( $_GET[ "op" ] == "addspec" ) {
+		$sql = "INSERT INTO specifications  (spec_name) VALUES ('".$_GET["sname"]."')";
+			try {
+				$db = new DAL();
+				$data = $db->ExecuteQuery( $sql );
+
+				header( "Content-type:application/json" );
+				echo json_encode( $data );
+			} catch ( Exception $e ) {
+				echo - 1;
+			}
+
+	}
 
 
 }
