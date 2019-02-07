@@ -48,136 +48,28 @@ if ( isset( $_GET[ "pid" ] ) ) {
 </head>
 
 <body>
-	<header id="header" role="banner">
-		<div class="container">
-			<div id="navbar" class="navbar navbar-default">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".mainnav"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-					<a class="navbar-brand" href="index.php">TECHNONEW</a> </div>
-				<div class="collapse navbar-collapse mainnav">
-					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown hidden-md hidden-lg hidden-sm"> <a class="dropdown" data-toggle="dropdown" href="#"><span class="fas fa-list-ol"></span> Categories <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Computers</a>
-								</li>
-								<li><a href="#">Computer Parts</a>
-								</li>
-								<li><a href="#">Computer Accessories</a>
-								</li>
-								<li><a href="#">Mobile Phones</a>
-								</li>
-								<li><a href="#">Mobile Accessories</a>
-								</li>
-								<li><a href="#">Electronics</a>
-								</li>
-							</ul>
-						</li>
-						<li><a href="#"><span class="fas fa-shopping-cart"></span> Cart</a> </li>
-						<li><a href="register.html"><span class="fas fa-user-plus"></span> Sign Up</a> </li>
-						<li><a href="login.html"><span class="fas fa-sign-in-alt"></span> Login</a> </li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</header>
+	<?php   
+	include("nav-tools.php");
+	
+	
+	
+	?>
+	<div class="container">
 
-	<!--/#header-->
-	<div class="container ">
-		<button class="btn btn-default col-lg-4 col-sm-4 col-md-4 col-xs-12">Search for a PC</button>
-		<div class="col-xs-4"><br>
-		</div>
-		<div class="input-group pull-right col-lg-4 col-sm-4 col-md-4 col-xs-12">
-			<input type="text" class="form-control" placeholder="Search">
-			<div class="input-group-btn">
-				<button class="btn btn-default" type="submit"> <i class="glyphicon glyphicon-search"></i> </button>
-			</div>
-		</div>
-	</div>
-	<br>
-	<div class="container">
-		<div class="navbar navbar-default hidden-xs">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".ctg"> <span class="sr-only">Toggle navigation</span> <span class="fa fa-caret-square-down"></span></button>
-			</div>
-			<div class="collapse navbar-collapse ctg">
-				<ul class="nav navbar-nav" id="categories">
-					<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#">Computers <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Page 1-1</a>
-							</li>
-							<li><a href="#">Page 1-2</a>
-							</li>
-							<li><a href="#">Page 1-3</a>
-							</li>
-						</ul>
-					</li>
-					<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#">Computer Parts <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Page 1-1</a>
-							</li>
-							<li><a href="#">Page 1-2</a>
-							</li>
-							<li><a href="#">Page 1-3</a>
-							</li>
-						</ul>
-					</li>
-					<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#">Computer Accessories<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Page 1-1</a>
-							</li>
-							<li><a href="#">Page 1-2</a>
-							</li>
-							<li><a href="#">Page 1-3</a>
-							</li>
-						</ul>
-					</li>
-					<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mobile Phones<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Page 1-1</a>
-							</li>
-							<li><a href="#">Page 1-2</a>
-							</li>
-							<li><a href="#">Page 1-3</a>
-							</li>
-						</ul>
-					</li>
-					<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mobile Accessories <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Page 1-1</a>
-							</li>
-							<li><a href="#">Page 1-2</a>
-							</li>
-							<li><a href="#">Page 1-3</a>
-							</li>
-						</ul>
-					</li>
-					<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#">Electronics<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Page 1-1</a>
-							</li>
-							<li><a href="#">Page 1-2</a>
-							</li>
-							<li><a href="#">Page 1-3</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<hr class="hidden-xs">
-	</div>
-	<div class="container">
-		
-		<div class="col-xs-6 text-center" id="images">
+		<div  style ="border:0.1px  solid #D50000;"class="col-xs-12 col-sm-6 text-center" id="images">
 			<?php 
 		include_once("ws/DAL.class.php");
+			
 		$sql = "SELECT * FROM products WHERE products.product_id = '".$_GET['pid']."'";
+			$location="";
 
 		try {
 			$db = new DAL();
 			$data = $db->getData( $sql );
 			
 			if(!empty($data) ){
+				$location= "img/products/".$data[0]['product_name'].$data[0]['model_number']."/";
+				
 				echo('<a href="img/products/'.$data[0]["product_name"].$data[0]["model_number"].'/'.$data[0]["product_image"].'" data-lightbox="roadtrip">
 		  <img style="width:500px; height:500px;" class="img-responsive img-home-portfolio" src="img/products/'.$data[0]["product_name"].$data[0]["model_number"].'/'.$data[0]["product_image"].'"></a>');
 			
@@ -190,40 +82,47 @@ if ( isset( $_GET[ "pid" ] ) ) {
 		
 		
 		?>
-		
+
 
 
 
 
 			<div class="col-xs-12">
-				<a href="img/Samsung-Galaxy-Note-9-PNG.png" data-lightbox="roadtrip">
-			<img style="width: 96px; height: 96px; display: inline;" class="img-responsive img-home-portfolio" src="img/Samsung-Galaxy-Note-9-PNG.png"> 
-		</a>
-			
+				<?php
+
+
+				include_once( "ws/DAL.class.php" );
+				$sql = "SELECT * FROM product_images WHERE product_id = '" . $_GET[ 'pid' ] . "'";
+
+				try {
+					$db = new DAL();
+					$data = $db->getData( $sql );
+
+					if ( !empty( $data ) ) {
+						for ( $i = 1; $i < 5; $i++ ) {
+							if ( !empty( $data[ 0 ][ "img" . $i ] ) ) {
+								echo( '<a href="' . $location . $data[ 0 ][ "img" . $i ] . '" data-lightbox="roadtrip">
+			<img style="width: 96px; height: 96px; display: inline;" class="img-responsive img-home-portfolio" src="' . $location . $data[ 0 ][ "img" . $i ] . '"> 
+		</a>' );
+							}
+						}
+
+
+					}
+				} catch ( Exception $e ) {
+					echo - 1;
+				}
 
 
 
 
-				<a href="img/Samsung-Galaxy-Note-9-PNG.png" data-lightbox="roadtrip">
-			<img style="width: 96px; height: 96px; display: inline;" class="img-responsive img-home-portfolio" src="img/Samsung-Galaxy-Note-9-PNG.png"> 
-		</a>
-			
+
+				?>
 
 
 
 
-				<a href="img/Samsung-Galaxy-Note-9-PNG.png" data-lightbox="roadtrip">
-			<img style="width: 96px; height: 96px; display: inline;" class="img-responsive img-home-portfolio" src="img/Samsung-Galaxy-Note-9-PNG.png">
-		</a>
-			
 
-
-
-
-				<a href="img/Samsung-Galaxy-Note-9-PNG.png" data-lightbox="roadtrip">
-			<img style="width: 96px; height: 96px; display: inline;" class="img-responsive img-home-portfolio" src="img/Samsung-Galaxy-Note-9-PNG.png">
-		</a>
-			
 
 
 
@@ -233,13 +132,13 @@ if ( isset( $_GET[ "pid" ] ) ) {
 		<div class="col-md-6">
 			<?php 
 			include_once("ws/DAL.class.php");
-			$sql = "SELECT products.product_name FROM products WHERE products.product_id = '".$_GET['pid']."'";
+			$sql = "SELECT * FROM products WHERE products.product_id = '".$_GET['pid']."'";
 
 		try {
 			$db = new DAL();
 			$data = $db->getData( $sql );
 			if($data != null){
-				echo("<h1>".$data[0]['product_name']."</h1><hr><br><br><br>");
+				echo("<h1>".$data[0]['product_name']."</h1><h5 style = ' font-size : 14px;color: #D50000;'>Model: ".$data[0]['model_number']."</h5><hr>");
 			}
 			
 			
@@ -254,9 +153,9 @@ if ( isset( $_GET[ "pid" ] ) ) {
 			$data = $db->getData( $sql );
 			
 			if(count($data) > 0 ){
-				echo("<h4><b>Product details</b></h4><ul>");
+				echo("<h3><b>Product details</b></h3><ul>");
 				for($i = 0 ; $i < count($data) ; $i++){
-					echo( "<li><b>".$data[$i]["spec_name"].":</b> ".$data[$i]["value"]."</li>");
+					echo( "<li  class= 'lired' style = 'font-size : 18px;'><b style = 'color:#D50000;' >".$data[$i]["spec_name"].":</b> ".$data[$i]["value"]."</li>");
 				}
 				echo("</ul>");
 			}
@@ -268,5 +167,6 @@ if ( isset( $_GET[ "pid" ] ) ) {
 		</div>
 	</div>
 </body>
-	<script src="js/tools.js"></script>
+<script src="js/tools.js"></script>
+	<script src="js/globals.js"></script>
 </html>
