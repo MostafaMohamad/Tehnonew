@@ -279,4 +279,5 @@ $sql = "";
 </div>
 <script src="js/index.js"></script>
 <script src="js/tools.js"></script>
+<script src="js/globals.js"></script>
 </html>
