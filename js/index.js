@@ -4,7 +4,10 @@ $(document).ready(function () {
 	PopulateList("newproducts");
 	PopulateList("featured");
 
+
+
 });
+
 
 function PopulateList(operation) {
 	'use strict';
@@ -45,7 +48,7 @@ function ViewProducts(data, op) {
 			'<a href="product-details.php?pid=' + data[i].product_id + '"><img class="img-responsive img-home-portfolio" src="' + location + data[i].product_name + data[i].model_number + '/' + data[i].product_image + '"></a>' +
 			'<div class="prices">' +
 			'<h4 class = "col-xs-6" > ' + data[i].product_price + ' &#36; </h4>' +
-			'<h4 class= "pull-right" > <a href = "#" > <span class = "fas fa-cart-plus" > </span></a> </h4>' +
+			'<h4 class= "pull-right" > <a href = "cart-mgmt.php?pid=' + data[i].product_id + '" > <span class = "fas fa-cart-plus" > </span></a> </h4>' +
 			'</div></div></div>';
 		s += lst;
 	}

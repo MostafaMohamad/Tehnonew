@@ -16,7 +16,7 @@ if ( isset( $_GET[ "op" ] ) ) {
 
 	}
 } else if ( isset( $_GET[ "keyword" ] ) ) {
-	$sql = "SELECT * FROM products WHERE product_added >= DATE_ADD(NOW(), INTERVAL -2 MONTH) ORDER BY product_id DESC";
+	$sql = "SELECT * FROM products WHERE product_name LIKE '%".$_GET["keyword"]."%' OR model_number LIKE '%".$_GET["keyword"]."%' OR product_brand LIKE '%".$_GET["keyword"]."%' ORDER BY product_added DESC ";
 
 
 } else if ( isset( $_GET[ "category" ] ) ) {
@@ -42,7 +42,7 @@ if ( !empty( $sql ) ) {
 			<a href="product-details.php?pid=' . $data[ $i ][ "product_id" ] . '"><img class="img-responsive img-home-portfolio" src="img/products/' . $data[ $i ][ "product_name" ] . $data[ $i ][ "model_number" ] . '/' . $data[ $i ][ "product_image" ] . '"></a>
 			<div class="prices">
 			<h4 class = "col-xs-6" > ' . $data[ $i ][ "product_price" ] . ' &#36; </h4>
-			<h4 class= "pull-right" > <a href = "#" > <span class = "fas fa-cart-plus" > </span></a> </h4>
+			<h4 class= "pull-right" > <a href = "cart-mgmt.php?pid='.$data[$i]["product_id"].'" > <span class = "fas fa-cart-plus" > </span></a> </h4>
 			</div></div></div>';
 				$s .= $lst;
 			}
@@ -73,94 +73,10 @@ if ( !empty( $sql ) ) {
 </head>
 
 <body>
-	<header id="header" role="banner">
-		<div class="container">
-			<div id="navbar" class="navbar navbar-default">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".mainnav"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-					<a class="navbar-brand" href="index.php">TECHNONEW</a> </div>
-				<div class="collapse navbar-collapse mainnav">
-					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown hidden-md hidden-lg hidden-sm"> <a class="dropdown" data-toggle="dropdown" href="#"><span class="fas fa-list-ol"></span> Categories <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Computers</a>
-								</li>
-								<li><a href="#">Computer Parts</a>
-								</li>
-								<li><a href="#">Computer Accessories</a>
-								</li>
-								<li><a href="#">Mobile Phones</a>
-								</li>
-								<li><a href="#">Mobile Accessories</a>
-								</li>
-								<li><a href="#">Electronics</a>
-								</li>
-							</ul>
-						</li>
-						<li><a href="#"><span class="fas fa-shopping-cart"></span> Cart</a> </li>
-						<li><a href="register.html"><span class="fas fa-user-plus"></span> Sign Up</a> </li>
-						<li><a href="login.html"><span class="fas fa-sign-in-alt"></span> Login</a> </li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</header>
-
-	<!--/#header-->
-	<div class="container ">
-		<button class="btn btn-default col-lg-4 col-sm-4 col-md-4 col-xs-12">Search for a PC</button>
-		<div class="col-xs-4"><br>
-		</div>
-		<div class="input-group pull-right col-lg-4 col-sm-4 col-md-4 col-xs-12">
-			<input type="text" class="form-control" placeholder="Search">
-			<div class="input-group-btn">
-				<button class="btn btn-default" type="submit"> <i class="glyphicon glyphicon-search"></i> </button>
-			</div>
-		</div>
-	</div>
-	<br>
-	<div class="container">
-		<div class="navbar navbar-default hidden-xs">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".ctg"> <span class="sr-only">Toggle navigation</span> <span class="fa fa-caret-square-down"></span></button>
-			</div>
-			<div class="collapse navbar-collapse ctg">
-				<ul class="nav navbar-nav" id="categories">
-					<li class="dropdown"> <a class="dropdown-toggle cat" data-toggle="dropdown" href="#">Computers <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-
-						</ul>
-					</li>
-					<li class="dropdown"> <a class="dropdown-toggle cat" data-toggle="dropdown" href="#">Computer Parts <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-
-						</ul>
-					</li>
-					<li class="dropdown"> <a class="dropdown-toggle cat" data-toggle="dropdown" href="#">Computer Accessories<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-
-						</ul>
-					</li>
-					<li class="dropdown"> <a class="dropdown-toggle cat" data-toggle="dropdown" href="#">Mobile Phones<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-
-						</ul>
-					</li>
-					<li class="dropdown"> <a class="dropdown-toggle cat" data-toggle="dropdown" href="#">Mobile Accessories <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-
-						</ul>
-					</li>
-					<li class="dropdown"> <a class="dropdown-toggle cat" data-toggle="dropdown" href="#">Electronics<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<hr class="hidden-xs">
-	</div>
+	<?php
+	include("nav-tools.php");
+	?>
+	
 	<div class="section">
 		<div class="container">
 			<p>
@@ -180,6 +96,8 @@ if ( !empty( $sql ) ) {
 						}
 					}else if (isset($_GET["category"])){
 						echo($_GET["category"]);
+					}else if(isset($_GET["keyword"])){
+						echo('Searh result for "'.$_GET["keyword"].'"');
 					}
 
 					?>
@@ -249,4 +167,5 @@ if ( !empty( $sql ) ) {
 	</footer>
 </div>
 	<script src="js/tools.js"></script>
+	<script src="js/globals.js"></script>
 </html>

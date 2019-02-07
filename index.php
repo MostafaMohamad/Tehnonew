@@ -61,7 +61,7 @@ $sql = "";
 								</li>
 							</ul>
 						</li>
-						<li><a href="#"><span class="fas fa-shopping-cart"></span> Cart</a> </li>
+						<li><a href="cart.php"><span class="fas fa-shopping-cart"></span> Cart</a> </li>
 						<li><a href="register.html"><span class="fas fa-user-plus"></span> Sign Up</a> </li>
 						<li><a href="login.html"><span class="fas fa-sign-in-alt"></span> Login</a> </li>
 					</ul>
@@ -77,7 +77,7 @@ $sql = "";
 		</div>
 		<div class="input-group col-xs-12 col-sm-4">
 			<input id="search" type="text" class="form-control" name="search" placeholder="Search">
-			<span class="btn input-group-addon right-addon"><i class="fas fa-search"></i> </span>
+			<span class="btn input-group-addon right-addon" id="search-btn"><i class="fas fa-search"></i> </span>
 		</div>
 	</div>
 	<br>
