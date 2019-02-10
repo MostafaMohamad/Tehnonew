@@ -19,12 +19,9 @@
 
 	<!-- Custom Fonts -->
 	<link href="css/all.min.css" rel="stylesheet" type="text/css">
-
+	
 	<!-- Admin CSS File -->
 	<link href="css/admin.css" rel="stylesheet" type="text/css">
-
-	<!-- Table pagination CSS -->
-	<link href="css/datatables.min.css" rel="stylesheet" type="text/css">
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -161,83 +158,34 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Specs managment</h1>
+					<h1 class="page-header">Software managment</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
-			<br><br>
-			<div class="table-responsive col-xs-4">
-				<a href="#" data-toggle="modal" data-target="#add-spec"><span class="fa fa-plus" ></span> Add</a>
-				<div class="input-group pull-right col-xs-6">
-					<input type="text" class="form-control" placeholder="Search" id="specs-search">
-					<div class="input-group-btn">
-						<span class="btn btn-default">
-							<i class="fas fa-search"></i>
-      					</span>
-					</div>
-				</div>
-				<br><br>
-				<table class="table table-bordered table-hover" id="tbl-specs">
+			<div class="table-responsive">
+				<a href="#"><span class="fas fa-plus"> Add</span></a>
+				<table class="table table-bordered table-hover text-center" id="allpdttbl">
 					<thead>
 						<tr>
-							<th style="display: none;"></th>
-							<th class="col-xs-3">Spec</th>
+							<th class="col-xs-1">Name</th>
+							<th class="col-xs-1">CPU</th>
+							<th class="col-xs-1">Multicore</th>
+							<th class="col-xs-1">RAM</th>
+							<th class="col-xs-1">GPU</th>
+							<th class="col-xs-1">OS</th>
+							<th class="col-xs-1">Description</th>
+							<th class="col-xs-1">Image</th>
 							<th class="col-xs-1">Tools</th>
+							<th class="col-xs-1">Status</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php 
-						include("products-mgmt.php");
-						GetAllSpecs();
-						?>
+						include('products-mgmt.php');
+						GetAllProgarms();
+							?>
 					</tbody>
 				</table>
-				<!-- Modal -->
-				<div id="add-spec" class="modal fade" role="dialog">
-					<div class="modal-dialog">
-
-						<!-- Modal content-->
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<h4 class="modal-title">Add a new Spec</h4>
-							</div>
-							<div class="modal-body">
-								<div class="form-group">
-									<label for="new-spec-name">Name:</label>
-									<input type="text" class="form-control" id="new-spec-name">
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-primary" id="add-nspec">Save</button>
-							</div>
-						</div>
-
-					</div>
-				</div>
-				<!-- Modal -->
-				<div id="edit-spec" class="modal fade" role="dialog">
-					<div class="modal-dialog">
-
-						<!-- Modal content-->
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<h4 class="modal-title">Edit Spec</h4>
-							</div>
-							<div class="modal-body">
-								<div class="form-group">
-									<label for="edt-spec-name">Name:</label>
-									<input type="text" class="form-control" id="edt-spec-name">
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-danger" id="save-edt">Save changes</button>
-							</div>
-						</div>
-
-					</div>
-				</div>
 			</div>
 		</div>
 		<!-- /#page-wrapper -->
@@ -255,11 +203,5 @@
 
 	<!-- Custom Theme JavaScript -->
 	<script src="js/sb-admin-2.js"></script>
-
-	<!-- Specs mgmt JS file -->
-	<script src="js/spec-mgmt.js"></script>
-
-	<!-- Table pagination JS -->
-	<script src="js/datatables.min.js"></script>
 </body>
 </html>
