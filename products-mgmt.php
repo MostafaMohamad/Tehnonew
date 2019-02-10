@@ -71,7 +71,7 @@ function GetAllProgarms() {
 						<td>' . $data[ $i ]["vram"].'</td>
 						<td>' . $data[ $i ]["os_type"].'</td>
 						<td>' . $data[ $i ]["prog_details"].'</td>
-						<td>' . $data[ $i ]["prog_image"].'</td>
+						<td><img style="height:48px;" src="img/programs/'. $data[ $i ]["prog_name"].'/'. $data[ $i ]["prog_image"].'"></td>
 						<td>' . $data[ $i ]["prog_name"].'</td>
 						<td>' . $data[ $i ]["prog_name"].'</td></tr>' );
 					}

@@ -40,7 +40,7 @@ if ( isset( $_GET[ "op" ] ) ) {
 			$data = $db->getData( $sql );
 
 			header( "Content-type:application/json" );
-			echo json_encode( $data);
+			echo json_encode( $data );
 		} catch ( Exception $e ) {
 			echo - 1;
 		}
@@ -92,36 +92,36 @@ if ( isset( $_GET[ "op" ] ) ) {
 	//Add specs to product
 	else if ( $_GET[ "op" ] == "addspecs" ) {
 		$names = $_GET[ "Snames" ];
-		$nkey  = array_keys($names);
+		$nkey = array_keys( $names );
 		$values = $_GET[ "Svalues" ];
-		$vkey = array_keys($values);
+		$vkey = array_keys( $values );
 		$specs_nb = count( $names );
 		$val = "";
 		for ( $i = 0; $i < $specs_nb; $i++ ) {
 			$val .= "("
-			. "'".$_GET["pid"]."',"
-			. "(SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name='".$names[$nkey[$i]]."'),"
-			. "'".$values[$vkey[$i]]."'),";
+				. "'" . $_GET[ "pid" ] . "',"
+			. "(SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name='" . $names[ $nkey[ $i ] ] . "'),"
+			. "'" . $values[ $vkey[ $i ] ] . "'),";
 		}
-		
-		$qry = substr($val,0,-1);
-		
-		$sql = "INSERT INTO pdt_specs (product_id, spec_id, value) VALUES ".$qry;
-			try {
-				$db = new DAL();
-				$data = $db->ExecuteQuery( $sql );
 
-				header( "Content-type:application/json" );
-				echo json_encode( $data );
-			} catch ( Exception $e ) {
-				echo - 1;
-			}
+		$qry = substr( $val, 0, -1 );
+
+		$sql = "INSERT INTO pdt_specs (product_id, spec_id, value) VALUES " . $qry;
+		try {
+			$db = new DAL();
+			$data = $db->ExecuteQuery( $sql );
+
+			header( "Content-type:application/json" );
+			echo json_encode( $data );
+		} catch ( Exception $e ) {
+			echo - 1;
+		}
 
 	}
-	
+
 	//Add product to featured
 	else if ( $_GET[ "op" ] == "addtoftd" ) {
-		$sql = "UPDATE products SET featured_date = CURRENT_TIMESTAMP, Featured = '1' WHERE model_number='".$_GET["pmodel"]."'";
+		$sql = "UPDATE products SET featured_date = CURRENT_TIMESTAMP, Featured = '1' WHERE model_number='" . $_GET[ "pmodel" ] . "'";
 		try {
 			$db = new DAL();
 			$data = $db->ExecuteQuery( $sql );
@@ -129,14 +129,14 @@ if ( isset( $_GET[ "op" ] ) ) {
 			header( "Content-type:application/json" );
 			echo json_encode( $data );
 		} catch ( Exception $e ) {
-			
+
 		}
 
 	}
-	
+
 	//Remove product from featured
 	else if ( $_GET[ "op" ] == "rmftd" ) {
-		$sql = "UPDATE products SET  Featured = '0' WHERE model_number='".$_GET["pmodel"]."'";
+		$sql = "UPDATE products SET  Featured = '0' WHERE model_number='" . $_GET[ "pmodel" ] . "'";
 		try {
 			$db = new DAL();
 			$data = $db->ExecuteQuery( $sql );
@@ -144,66 +144,109 @@ if ( isset( $_GET[ "op" ] ) ) {
 			header( "Content-type:application/json" );
 			echo json_encode( $data );
 		} catch ( Exception $e ) {
-			
+
 		}
 
 	}
-	
+
 	//Add photos to product
 	else if ( $_GET[ "op" ] == "pdtphotos" ) {
 		$names = $_GET[ "names" ];
-		$nkey  = array_keys($names);
+		$nkey = array_keys( $names );
 		$specs_nb = count( $names );
 		$val = "";
 		for ( $i = 0; $i < 4; $i++ ) {
-			$val .= "'".$names[$nkey[$i]]."',";
+			$val .= "'" . $names[ $nkey[ $i ] ] . "',";
 		}
-		
-		$qry = substr($val,0,-1);
-		
-		$sql = "INSERT INTO product_images  VALUES ('".$_GET["pid"]."',".$qry.")";
-			try {
-				$db = new DAL();
-				$data = $db->ExecuteQuery( $sql );
 
-				header( "Content-type:application/json" );
-				echo json_encode( $data );
-			} catch ( Exception $e ) {
-				echo - 1;
-			}
+		$qry = substr( $val, 0, -1 );
+
+		$sql = "INSERT INTO product_images  VALUES ('" . $_GET[ "pid" ] . "'," . $qry . ")";
+		try {
+			$db = new DAL();
+			$data = $db->ExecuteQuery( $sql );
+
+			header( "Content-type:application/json" );
+			echo json_encode( $data );
+		} catch ( Exception $e ) {
+			echo - 1;
+		}
 
 	}
-	
+
 	//Edit spec
 	else if ( $_GET[ "op" ] == "editspec" ) {
-		$sql = "UPDATE specifications  SET spec_name = '".$_GET["sname"]."' WHERE specifications.spec_id = '".$_GET["sid"]."'";
-			try {
-				$db = new DAL();
-				$data = $db->ExecuteQuery( $sql );
+		$sql = "UPDATE specifications  SET spec_name = '" . $_GET[ "sname" ] . "' WHERE specifications.spec_id = '" . $_GET[ "sid" ] . "'";
+		try {
+			$db = new DAL();
+			$data = $db->ExecuteQuery( $sql );
 
-				header( "Content-type:application/json" );
-				echo json_encode( $data );
-			} catch ( Exception $e ) {
-				echo - 1;
-			}
+			header( "Content-type:application/json" );
+			echo json_encode( $data );
+		} catch ( Exception $e ) {
+			echo - 1;
+		}
 
 	}
-	
+
 	//Add spec
 	else if ( $_GET[ "op" ] == "addspec" ) {
-		$sql = "INSERT INTO specifications  (spec_name) VALUES ('".$_GET["sname"]."')";
-			try {
-				$db = new DAL();
-				$data = $db->ExecuteQuery( $sql );
+		$sql = "INSERT INTO specifications  (spec_name) VALUES ('" . $_GET[ "sname" ] . "')";
+		try {
+			$db = new DAL();
+			$data = $db->ExecuteQuery( $sql );
 
-				header( "Content-type:application/json" );
-				echo json_encode( $data );
-			} catch ( Exception $e ) {
-				echo - 1;
-			}
+			header( "Content-type:application/json" );
+			echo json_encode( $data );
+		} catch ( Exception $e ) {
+			echo - 1;
+		}
 
 	}
 
+	//Add Software
+	else if ( $_GET[ "op" ] == "addprog" ) {
+		$sql = "INSERT INTO programs (prog_name,prog_image,prog_details) VALUES ('" . $_GET[ "pname" ] . "','" . $_GET[ "pimage" ] . "','" . $_GET[ "pdetails" ] . "')";
+		try {
+			$db = new DAL();
+			$data = $db->ExecuteQuery( $sql );
 
+			echo( $data );
+
+		} catch ( Exception $e ) {
+			echo - 1;
+		}
+
+	}
+	//Assign specs to Software
+	else if ( $_GET[ "op" ] == "progspecs" ) {
+		$sql = "INSERT INTO program_specs (prog_id, cpu, multicore,	vram, ram, os_type, is64) VALUES ('" . $_GET[ "prog_id" ] . "','" . $_GET[ "cpu" ] . "','" . $_GET[ "mcore" ] . "','" . $_GET[ "gpu" ] . "','" . $_GET[ "ram" ] . "','" . $_GET[ "os" ] . "','" . $_GET[ "osv" ] . "')";
+		try {
+			$db = new DAL();
+			$data = $db->ExecuteQuery( $sql );
+
+			echo( $data );
+
+		} catch ( Exception $e ) {
+			echo - 1;
+		}
+
+	}
+
+	//Get all programs names
+	else if ( $_GET[ "op" ] == "getallprog" ) {
+		$sql = "SELECT * FROM programs";
+		try {
+			$db = new DAL();
+			$data = $db->getData( $sql );
+
+			header( "Content-type:application/json" );
+			echo json_encode( $data );
+		} catch ( Exception $e ) {
+			echo - 1;
+		}
+	}
 }
+
+//SELECT * FROM products,pdt_specs,specifications WHERE products.product_id = pdt_specs.product_id AND pdt_specs.spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = "cpu") AND pdt_specs.spec_id = specifications.spec_id AND pdt_specs.value = "7700 HQ" 
 ?>

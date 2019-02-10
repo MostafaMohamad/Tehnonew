@@ -223,11 +223,11 @@ function AddPdt(name, model, subc, brand, price, desc, pimage) {
 		timeout: 5000,
 		success: function (data, textStatus, xhr) {
 			data = JSON.parse(xhr.responseText);
-			if (data === null) {
-
-			} else if (data !== null) {
+			if (data !== "-1") {
 				var pid = data;
 				AddSpecs(pid);
+			}else{
+				alert(data);
 			}
 		},
 		error: function (xhr, status, errorThrown) {
@@ -328,7 +328,7 @@ function SendImagesNames(pid,namesList){
 			if (data === null) {
 
 			} else if (data !== null) {
-				alert("yes");
+				location.reload();
 			}
 		},
 		error: function (xhr, status, errorThrown) {
