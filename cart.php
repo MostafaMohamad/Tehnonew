@@ -47,15 +47,11 @@ include("cart-mgmt.php");
 					
 				
 			</div>
-			<div class="card-footer">
-				<a href="" class="btn btn-default pull-right buybtn">Buy Now</a>
-				<div class="pull-right" style="margin: 5px">
-					Total <b>50.00€</b>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 </body>
 <script src="js/tools.js"></script>
 <script src="js/globals.js"></script>
+<script src="js/cart.js"></script>
 </html>
