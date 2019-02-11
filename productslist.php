@@ -1,38 +1,65 @@
 <?php
 include_once( "ws/DAL.class.php" );
 $sql = '';
+$getresult = false;
 if ( isset( $_GET[ "op" ] ) ) {
 	$sql = "";
 	if ( $_GET[ "op" ] == "allproducts" ) {
 		$sql = "SELECT * FROM products";
+		$getresult = true;
 	} else if ( $_GET[ "op" ] == "featured" ) {
 		$sql = "SELECT * FROM products WHERE products.Featured = 1 GROUP BY featured_date DESC ";
-
+		$getresult = true;
 
 	} else if ( $_GET[ "op" ] == "newproducts" ) {
 		$sql = "SELECT * FROM products WHERE product_added >= DATE_ADD(NOW(), INTERVAL -2 MONTH) ORDER BY product_id DESC";
-
+		$getresult = true;
 	} else if ( $_GET[ "op" ] == "recommended" ) {
 
 	}
 } else if ( isset( $_GET[ "keyword" ] ) ) {
-	$sql = "SELECT * FROM products WHERE product_name LIKE '%".$_GET["keyword"]."%' OR model_number LIKE '%".$_GET["keyword"]."%' OR product_brand LIKE '%".$_GET["keyword"]."%' ORDER BY product_added DESC ";
-
+	$sql = "SELECT * FROM products WHERE product_name LIKE '%" . $_GET[ "keyword" ] . "%' OR model_number LIKE '%" . $_GET[ "keyword" ] . "%' OR product_brand LIKE '%" . $_GET[ "keyword" ] . "%' ORDER BY product_added DESC ";
+	$getresult = true;
 
 } else if ( isset( $_GET[ "category" ] ) ) {
 	$sql = "SELECT * FROM products WHERE products.subc_id = (SELECT subc_id FROM sub_categories WHERE sub_categories.subc_name = '" . $_GET[ "category" ] . "')";
+	$getresult = true;
+} else if ( isset( $_GET[ "mp" ] ) && isset( $_GET[ "os" ] ) && isset( $_GET[ "max-price" ] ) ) {
+	$sql = "SELECT MAX(program_specs.cpu) AS 'cpu_max', MAX(program_specs.vram) AS 'vram_max',MAX(program_specs.ram) AS 'ram_max' FROM program_specs,programs,profession_major, pm_programs WHERE pm_programs.pm_id = (SELECT profession_major.pm_id WHERE profession_major.pm_name = '" . $_GET[ "mp" ] . "') AND pm_programs.prog_id = programs.prog_id AND programs.prog_id = program_specs.prog_id";
+	if ( $_GET[ "os" ] == 'windows' || $_GET[ "os" ] == 'macos' ) {
+		$sql .= " AND program_specs.os_type = '" . $_GET[ "os" ] . "'";
+	}
+	try {
+		$db = new DAL();
+		$data = $db->getData( $sql );
 
+		if ( !empty( $data[ 0 ][ "cpu_max" ] ) ) {
+			$getresult = true;
+			$sql = "SELECT * FROM products WHERE products.product_id IN (SELECT pdt_specs.product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'cpu') AND value >= " . $data[ 0 ][ "cpu_max" ] . " AND product_id IN (SELECT product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'ram') AND value >= " . $data[ 0 ][ "ram_max" ] . " AND product_id IN(SELECT product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'vram') AND value >= " . $data[ 0 ][ "vram_max" ] . " AND product_id IN (SELECT product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'os') AND value = '" . $_GET[ "os" ] . "' ) ))) AND products.subc_id IN (SELECT sub_categories.subc_id FROM sub_categories WHERE sub_categories.category_id = (SELECT categories.category_id FROM categories WHERE categories.category_name = 'mobile phones')) AND products.product_price <= ";
+			if ( empty( $_GET[ "max-price" ] ) ) {
+				$sql .= " (SELECT MAX(products.product_price) FROM products)";
+			} else if ( $_GET[ "max-price" ] > 0 ) {
+				$sql .= $_GET[ "max-price" ];
+			}
+		} else {
+			$getresult = false;
 
+			header( "Refresh:0; url='search-for-pc.php'" );
+		}
+
+	} catch ( Exception $e ) {
+		echo( $e );
+	}
 } else {
 	include( "ws/404-notfound.php" );
 }
 
-if ( !empty( $sql ) ) {
+if ( !empty( $sql ) && $getresult ) {
 
 	try {
 		$db = new DAL();
 		$data = $db->getData( $sql );
-		if ( $data  != null ) {
+		if ( $data != null ) {
 			$s = "";
 			for ( $i = 0; $i < count( $data ); $i++ ) {
 				$lst = '<div class="col-lg-3 col-md-4 col-sm-6">
@@ -42,13 +69,13 @@ if ( !empty( $sql ) ) {
 			<a href="product-details.php?pid=' . $data[ $i ][ "product_id" ] . '"><img class="img-responsive img-home-portfolio" src="img/products/' . $data[ $i ][ "product_name" ] . $data[ $i ][ "model_number" ] . '/' . $data[ $i ][ "product_image" ] . '"></a>
 			<div class="prices">
 			<h4 class = "col-xs-6" > ' . $data[ $i ][ "product_price" ] . ' &#36; </h4>
-			<h4 class= "pull-right" > <a href = "cart-mgmt.php?pid='.$data[$i]["product_id"].'" > <span class = "fas fa-cart-plus" > </span></a> </h4>
+			<h4 class= "pull-right" > <a href = "cart-mgmt.php?pid=' . $data[ $i ][ "product_id" ] . '" > <span class = "fas fa-cart-plus" > </span></a> </h4>
 			</div></div></div>';
 				$s .= $lst;
 			}
 		}
 	} catch ( Exception $e ) {
-		echo - 1;
+		echo $e;
 	}
 }
 ?>
@@ -74,9 +101,9 @@ if ( !empty( $sql ) ) {
 
 <body>
 	<?php
-	include("nav-tools.php");
+	include( "nav-tools.php" );
 	?>
-	
+
 	<div class="section">
 		<div class="container">
 			<p>
@@ -94,10 +121,10 @@ if ( !empty( $sql ) ) {
 							default:
 								echo( "Products" );
 						}
-					}else if (isset($_GET["category"])){
-						echo($_GET["category"]);
-					}else if(isset($_GET["keyword"])){
-						echo('Searh result for "'.$_GET["keyword"].'"');
+					} else if ( isset( $_GET[ "category" ] ) ) {
+						echo( $_GET[ "category" ] );
+					} else if ( isset( $_GET[ "keyword" ] ) ) {
+						echo( 'Searh result for "' . $_GET[ "keyword" ] . '"' );
 					}
 
 					?>
@@ -166,6 +193,6 @@ if ( !empty( $sql ) ) {
 		</div>
 	</footer>
 </div>
-	<script src="js/tools.js"></script>
-	<script src="js/globals.js"></script>
+<script src="js/tools.js"></script>
+<script src="js/globals.js"></script>
 </html>
