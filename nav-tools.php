@@ -1,5 +1,20 @@
 <?php
+include_once( "ws/DAL.class.php" );
 
+if ( isset( $_GET[ "pid" ] ) ) {
+	$sql = "SELECT * FROM products WHERE products.product_id = '" . $_GET[ 'pid' ] . "'";
+	try {
+		$db = new DAL();
+		$data = $db->getData( $sql );
+		if ( empty( $data ) ) {
+			include( "ws/404-notfound.php" );
+		}
+	} catch ( Exception $e ) {
+		echo - 1;
+	}
+} else {
+	include( "ws/404-notfound.php" );
+}
 echo('<header id="header" role="banner">
 		<div class="container">
 			<div id="navbar" class="navbar navbar-default">
@@ -24,7 +39,7 @@ echo('<header id="header" role="banner">
 								</li>
 							</ul>
 						</li>
-						<li><a href="cart.php"><span class="fas fa-shopping-cart"></span> Cart</a> </li>
+						<li><a href="cart.php"><span class="fas fa-shopping-cart"></span><span class="badge">5</span> Cart </a> </li>
 						<li><a href="register.html"><span class="fas fa-user-plus"></span> Sign Up</a> </li>
 						<li><a href="login.html"><span class="fas fa-sign-in-alt"></span> Login</a> </li>
 					</ul>

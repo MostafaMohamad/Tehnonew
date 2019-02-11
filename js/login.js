@@ -49,9 +49,9 @@ function UserType(type) {
 
 	"use strict";
 	if (type === '0') {
-		window.location.href = "index.html";
+		window.location.href = "index.php";
 	} else if (type === '1') {
-		alert("admin");
+		window.location.href = "admin.html";
 	}
 
 

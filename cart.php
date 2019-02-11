@@ -37,8 +37,6 @@ include("cart-mgmt.php");
 			</div>
 			</br>
 			<div class="card-body">
-
-			
 				
 						<?php 
 				GetCartItems();
