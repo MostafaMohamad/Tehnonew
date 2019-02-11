@@ -252,3 +252,8 @@ ul {
 .buybtn:active:focus {
 	color: #fff !important;
 }
+.choice {
+	margin:  0;
+	padding: 0;
+	border-radius: 25px;
+}
