@@ -36,7 +36,7 @@
 					<h4>Major or Profession</h4>
 				</div>
 				<div class="col-xs-5 pull-right">
-					<img class="btn img-responsive choice" src="img/img-software.jpeg" data-toggle="tab" href="#menu2">
+					<img class="btn img-responsive choice" src="img/img-software.jpeg" data-toggle="modal" data-target="#prog-modal">
 					<h4>Software or specs</h4>
 				</div>
 			</div>
@@ -47,7 +47,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- Modal -->
+		<!-- Major/Profession Modal -->
 		<div id="prof-mj-modal" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 
@@ -60,11 +60,11 @@
 					<div class="modal-body">
 						<h4>Major/Profession</h4>
 						<select class="form-control" id="prof-mj" style="width: 100%;">
-							<option>hiuygtf</option>
-							<option>hiuygtf</option>
-							<option>hiuygtf</option>
-							<option>hiuygtf</option>
-							<option>hiuygtf</option>
+							<?php
+							include( 'ws/ws_search.php' );
+							GetProfessions();
+							GetMajors();
+							?>
 						</select>
 						<h4>Preferred OS</h4>
 						<select class="form-control" id="os-type" style="width: 100%;">
@@ -75,12 +75,46 @@
 						<h4>Maximum price</h4>
 						<input type="number" class="form-control" id="max-price">
 					</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" id="mp-search">Search <span class="fas fa-search"></span></button>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" id="mp-search">Search <span class="fas fa-search"></span></button>
+					</div>
 				</div>
 			</div>
 		</div>
+		<!-- Software Modal -->
+		<div id="prog-modal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Search for a PC by software&#40;s&#41;</h4>
+					</div>
+					<div class="modal-body">
+						<h4>Choose OS:</h4>
+						<select class="form-control" id="prog-os" style="width: 100%;">
+							<option>All</option>
+							<option>Windows</option>
+							<option>macOS</option>
+						</select>
+						<h4>Choose your most used programs:</h4>
+						<select id="progs-list" style="width: 100%;" disabled>
+						</select>
+					
+
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
 	</div>
+
+
 </body>
 <script src="js/tools.js"></script>
 <script src="js/select2.min.js"></script>

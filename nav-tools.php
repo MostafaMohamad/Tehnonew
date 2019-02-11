@@ -1,7 +1,7 @@
 <?php
 include_once( "ws/DAL.class.php" );
 
-if ( isset( $_GET[ "pid" ] ) ) {
+/*if ( isset( $_GET[ "pid" ] ) ) {
 	$sql = "SELECT * FROM products WHERE products.product_id = '" . $_GET[ 'pid' ] . "'";
 	try {
 		$db = new DAL();
@@ -14,7 +14,7 @@ if ( isset( $_GET[ "pid" ] ) ) {
 	}
 } else {
 	include( "ws/404-notfound.php" );
-}
+}*/
 echo('<header id="header" role="banner">
 		<div class="container">
 			<div id="navbar" class="navbar navbar-default">
