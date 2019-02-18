@@ -23,7 +23,6 @@ function PopulateList(operation) {
 		success: function (data, textStatus, xhr) {
 			data = JSON.parse(xhr.responseText);
 			if (data === null) {
-				alert("null");
 			} else if (data !== null) {
 				var list = data;
 				ViewProducts(list, operation)();

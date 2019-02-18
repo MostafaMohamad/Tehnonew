@@ -35,9 +35,9 @@ if ( isset( $_GET[ "op" ] ) ) {
 		$data = $db->getData( $sql );
 		if ( !empty( $data[ 0 ][ "cpu_max" ] ) ) {
 			$getresult = true;
-			$sql = "SELECT * FROM products WHERE products.product_id IN (SELECT pdt_specs.product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'cpu') AND value >= " . $data[ 0 ][ "cpu_max" ] . " AND product_id IN (SELECT product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'ram') AND value >= " . $data[ 0 ][ "ram_max" ] . " AND product_id IN(SELECT product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'vram') AND value >= " . $data[ 0 ][ "vram_max" ];
+			$sql = "SELECT * FROM products WHERE products.product_id IN (SELECT pdt_specs.product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'CPU Clock Speed') AND value >= " . $data[ 0 ][ "cpu_max" ] . " AND product_id IN (SELECT product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'ram') AND value >= " . $data[ 0 ][ "ram_max" ] . " AND product_id IN(SELECT product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'vram') AND value >= " . $data[ 0 ][ "vram_max" ];
 			if ( $_GET[ "os" ] == 'Windows' || $_GET[ "os" ] == 'macOS' ) {
-				$sql .= " AND product_id IN (SELECT product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'os') AND value = '" . $_GET[ "os" ] . "' )";
+				$sql .= " AND product_id IN (SELECT product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'os') AND value LIKE  '%" . $_GET[ "os" ] . "%' )";
 			}
 			$sql .= "))) AND products.subc_id IN (SELECT sub_categories.subc_id FROM sub_categories WHERE sub_categories.category_id = (SELECT categories.category_id FROM categories WHERE categories.category_name = 'computers')) AND products.product_price <= ";
 			if ( empty( $_GET[ "max-price" ] ) ) {
@@ -73,9 +73,9 @@ if ( isset( $_GET[ "op" ] ) ) {
 
 		if ( !empty( $data[ 0 ][ "cpu_max" ] ) ) {
 			$getresult = true;
-			$sql = "SELECT * FROM products WHERE products.product_id IN (SELECT pdt_specs.product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'cpu') AND value >= " . $data[ 0 ][ "cpu_max" ] . " AND product_id IN (SELECT product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'ram') AND value >= " . $data[ 0 ][ "ram_max" ] . " AND product_id IN(SELECT product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'vram') AND value >= " . $data[ 0 ][ "vram_max" ];
+			$sql = "SELECT * FROM products WHERE products.product_id IN (SELECT pdt_specs.product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'CPU Clock Speed') AND value >= " . $data[ 0 ][ "cpu_max" ] . " AND product_id IN (SELECT product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'ram') AND value >= " . $data[ 0 ][ "ram_max" ] . " AND product_id IN(SELECT product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'vram') AND value >= " . $data[ 0 ][ "vram_max" ];
 			if ( $_GET[ "os" ] == 'Windows' || $_GET[ "os" ] == 'macOS' ) {
-				$sql .= " AND product_id IN (SELECT product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'os') AND value = '" . $_GET[ "os" ] . "' )";
+				$sql .= " AND product_id IN (SELECT product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'os') AND value LIKE '%" . $_GET[ "os" ] . "%' )";
 			}
 			$sql .= "))) AND products.subc_id IN (SELECT sub_categories.subc_id FROM sub_categories WHERE sub_categories.category_id = (SELECT categories.category_id FROM categories WHERE categories.category_name = 'computers')) AND products.product_price <= ";
 			if ( empty( $_GET[ "max-price" ] ) ) {
