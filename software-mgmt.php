@@ -172,7 +172,7 @@
 				<ul class="list-inline">
 					<li><a href="#" data-toggle="modal" data-target="#add-prog" id="btn-add-prog"><span class="fas fa-plus"> Add new</span></a>
 					</li>
-					<li><a href="#" data-toggle="modal" data-target="#ext-modal" id="btn-add-ext"><span class="fas fa-plus-square"> Add from existing</span></a>
+					<li><a href="#" data-toggle="modal" data-target="#ext-modal" id="btn-add-ext"><span class="fas fa-plus-square"  data-toggle="tab" href="#home"> Add from existing</span></a>
 					</li>
 					<div class="input-group pull-right col-xs-2">
 						<input type="text" class="form-control" placeholder="Search" id="progs-search">
@@ -181,6 +181,7 @@
 							<i class="fas fa-search"></i>
       					</span>
 						
+
 						</div>
 					</div>
 				</ul>
@@ -250,6 +251,7 @@
 								<div class="form-group col-sm-6">
 									<label for="os-v">OS Version:</label>
 								
+
 
 
 
@@ -333,6 +335,7 @@
 										<div class="form-group col-sm-6">
 											<label for="xos-v">OS Version:</label>
 										
+
 											<select class="form-control" id="xos-v" required>
 												<option>32 bit</option>
 												<option>64 bit</option>
@@ -357,9 +360,6 @@
 
 				</div>
 			</div>
-			<select title="Select your surfboard" id="hgf">
-				
-			</select>
 		</div>
 		<!-- /#page-wrapper -->
 	</div>

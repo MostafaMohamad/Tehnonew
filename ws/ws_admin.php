@@ -260,4 +260,7 @@ if ( isset( $_GET[ "op" ] ) ) {
 
 /*algo
 SELECT * FROM products WHERE products.product_id IN (SELECT pdt_specs.product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'cpu') AND value >= " . $data[ 0 ][ "cpu_max" ] . " AND product_id IN (SELECT product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'ram') AND value >= " . $data[ 0 ][ "ram_max" ] . " AND product_id IN(SELECT product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'vram') AND value >= " . $data[ 0 ][ "vram_max" ] . " AND product_id IN (SELECT product_id FROM pdt_specs WHERE spec_id = (SELECT specifications.spec_id FROM specifications WHERE specifications.spec_name = 'os') AND value = '".$_GET["os"]."' ) ))) AND products.subc_id IN (SELECT sub_categories.subc_id FROM sub_categories WHERE sub_categories.category_id = (SELECT categories.category_id FROM categories WHERE categories.category_name = 'mobile phones')) AND products.product_price <= */
+
+
+//SELECT MAX(program_specs.cpu) AS "cpu_max", MAX(program_specs.vram) AS "vram_max",MAX(program_specs.ram) AS "ram_max" FROM program_specs,programs WHERE program_specs.prog_id IN (SELECT programs.prog_id FROM programs WHERE programs.prog_name IN ('photoshop', 'Adobe illustrator','adobe dreamweaver')) AND programs.prog_id = program_specs.prog_id AND program_specs.os_type = 'macos' 
 ?>

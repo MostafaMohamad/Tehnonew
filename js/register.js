@@ -67,7 +67,7 @@ function SIGNUP(fullname, username, email, dateofbirth, gender, password) {
 		success: function (data, textStatus, xhr) {
 			data = JSON.parse(xhr.responseText);
 			if (data === null) {} else if (data !== null) {
-				window.location.href = "index.html";
+				window.location.href = "index.php";
 			}
 		},
 		error: function (xhr, status, errorThrown) {

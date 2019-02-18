@@ -38,9 +38,7 @@ if ( isset( $_GET[ "op" ] ) ) {
 		try {
 			$db = new DAL();
 			$data = $db->getData( $sql );
-
-			header( "Content-type:application/json" );
-
+			
 			if ( empty( $data ) ) {
 				echo( "0" );
 			} else if ( count( $data ) > 0 ) {
@@ -62,9 +60,7 @@ if ( isset( $_GET[ "op" ] ) ) {
 		try {
 			$db = new DAL();
 			$data = $db->getData( $sql );
-
-			header( "Content-type:application/json" );
-
+			
 			if ( empty( $data ) ) {
 				echo( "0" );
 			} else if ( count( $data ) > 0 ) {
@@ -88,17 +84,16 @@ if ( isset( $_GET[ "op" ] ) ) {
 		try {
 			$db = new DAL();
 			$data = $db->ExecuteQuery( $sql );
-
-			header( "Content-type:application/json" );
-
+			
+			
 			if ( empty( $data ) ) {
 				echo( "0" );
-			} else if ( !empty( $data ) > 0 ) {
-				echo( "1" );
+			} else if ( !empty( $data )) {
+				echo($data);
 				session_start();
-					$_SESSION[ "uid" ] = $data[ 0 ][ "user_id" ];
-					$_SESSION[ "uname" ] = $data[ 0 ][ "user_username" ];
-					$_SESSION[ "utype" ] = $data[ 0 ][ "user_type" ];
+					$_SESSION[ "uid" ] = $data;
+					$_SESSION[ "uname" ] = $_GET[ "uuname" ];
+					$_SESSION[ "utype" ] = $_GET[ "utype" ];
 				
 			} else {
 				echo( "-1" );

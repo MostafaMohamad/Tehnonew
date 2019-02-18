@@ -2,10 +2,13 @@
 header( 'Access-Control-Allow-Origin: *' );
 require_once( 'DAL.class.php' );
 
-/*if ( isset( $_GET[ "op" ] ) ) {
+if ( isset( $_GET[ "op" ] ) ) {
 	//Get Programs by os
 	if ( $_GET[ "op" ] == 'progbyos' ) {
-		$sql = "SELECT * FROM programs WHERE programs.prog_id IN (SELECT program_specs.prog_id FROM program_specs WHERE program_specs.os_type = '" . $_GET[ "os" ] . "')";
+		$sql = "SELECT * FROM programs";
+		if($_GET["os"] != 'All'){
+			$sql .= " WHERE programs.prog_id IN (SELECT program_specs.prog_id FROM program_specs WHERE program_specs.os_type = '" . $_GET[ "os" ] . "')";
+		}
 		try {
 			$db = new DAL();
 			$data = $db->getData( $sql );
@@ -16,7 +19,7 @@ require_once( 'DAL.class.php' );
 		}
 
 	}
-}*/
+}
 
 //Get all professions
 function GetProfessions() {

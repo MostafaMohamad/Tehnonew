@@ -27,7 +27,7 @@ include("cart-mgmt.php");
 <body>
 	<?php
 	include("nav-tools.php");
-	
+	TopPage(false);
 	?>
 	<div class="container">
 		<div class="card">

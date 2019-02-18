@@ -25,6 +25,7 @@
 <body>
 	<?php   
 	include("nav-tools.php");
+	TopPage(false);
 	?>
 	<div class="container">
 
@@ -58,25 +59,25 @@
 						<h4 class="modal-title">Search for a PC by profession/major</h4>
 					</div>
 					<div class="modal-body">
-						<h4>Major/Profession</h4>
-						<select class="form-control" id="prof-mj" style="width: 100%;">
-							<?php
-							include( 'ws/ws_search.php' );
-							GetProfessions();
-							GetMajors();
-							?>
-						</select>
-						<h4>Preferred OS</h4>
-						<select class="form-control" id="os-type" style="width: 100%;">
-							<option>All</option>
-							<option>Windows</option>
-							<option>macOS</option>
-						</select>
-						<h4>Maximum price</h4>
-						<input type="number" class="form-control" id="max-price">
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" id="mp-search">Search <span class="fas fa-search"></span></button>
+						<form action="javascript:void(0);" id="mp-form">
+							<h4>Major/Profession</h4>
+							<select class="form-control" id="prof-mj" style="width: 100%;" required>
+								<?php
+								include( 'ws/ws_search.php' );
+								GetProfessions();
+								GetMajors();
+								?>
+							</select>
+							<h4>Preferred OS</h4>
+							<select class="form-control" id="os-type" style="width: 100%;" required>
+								<option>All</option>
+								<option>Windows</option>
+								<option>macOS</option>
+							</select>
+							<h4>Maximum price</h4>
+							<input type="number" class="form-control" id="max-price" required><br>
+							<button type="submit" class="btn btn-default pull-right" id="mp-search">Search <span class="fas fa-search"></span></button>
+						</form><br><br>
 					</div>
 				</div>
 			</div>
@@ -92,21 +93,20 @@
 						<h4 class="modal-title">Search for a PC by software&#40;s&#41;</h4>
 					</div>
 					<div class="modal-body">
-						<h4>Choose OS:</h4>
-						<select class="form-control" id="prog-os" style="width: 100%;">
-							<option>All</option>
-							<option>Windows</option>
-							<option>macOS</option>
+						<form action="javascript:void(0);" id="prog-form">
+							<h4>Choose OS:</h4>
+							<select class="form-control" id="prog-os" style="width: 100%;" required>
+								<option>All</option>
+								<option>Windows</option>
+								<option>macOS</option>
+							</select>
+							<h4>Choose your most used programs:</h4>
+							<select id="progs-list" style="width: 100%;" multiple required>
 						</select>
-						<h4>Choose your most used programs:</h4>
-						<select id="progs-list" style="width: 100%;" disabled>
-						</select>
-					
-
-
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<h4>Maximum price</h4>
+							<input type="number" class="form-control" id="prog-max-price" required><br>
+							<button type="submit" class="btn btn-default pull-right" id="prog-search">Search <span class="fas fa-search"></span></button>
+						</form><br><br>
 					</div>
 				</div>
 

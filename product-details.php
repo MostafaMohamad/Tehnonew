@@ -42,6 +42,7 @@ if ( isset( $_GET[ "pid" ] ) ) {
 <body>
 	<?php   
 	include("nav-tools.php");
+	TopPage(false);
 	?>
 	<div class="container">
 		<div id="myCarousel" class="carousel slide col-xs-12 col-sm-6" data-ride="carousel" style="background:none !important; border: #e3e3e3 1px solid;">

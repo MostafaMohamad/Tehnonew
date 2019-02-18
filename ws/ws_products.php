@@ -17,7 +17,7 @@ if ( isset( $_GET[ "op" ] ) ) {
 			echo - 1;
 		}
 	} else if ( $_GET[ "op" ] == "featured" ) {
-		$sql = "SELECT * FROM products WHERE products.Featured = 1 GROUP BY featured_date DESC LIMIT 4";
+		$sql = "SELECT * FROM products,inventory WHERE products.Featured = 1 AND inventory.p_id = products.product_id AND (SELECT COUNT(*) FROM inventory WHERE inventory.p_id = products.product_id) > 0 AND inventory.status = 'available' ORDER BY featured_date DESC LIMIT 8";
 
 		try {
 			$db = new DAL();
@@ -33,7 +33,7 @@ if ( isset( $_GET[ "op" ] ) ) {
 
 	//get new products
 	else if ( $_GET[ "op" ] == "newproducts" ) {
-		$sql = "SELECT * FROM products WHERE product_added >= DATE_ADD(NOW(), INTERVAL -2 MONTH) ORDER BY product_id DESC LIMIT 4";
+		$sql = "SELECT * FROM products,inventory WHERE product_added >= DATE_ADD(NOW(), INTERVAL -2 MONTH) AND inventory.p_id = products.product_id AND (SELECT COUNT(*) FROM inventory WHERE inventory.p_id = products.product_id) > 0 AND inventory.status = 'available' ORDER BY product_id DESC LIMIT 8";
 
 		try {
 			$db = new DAL();

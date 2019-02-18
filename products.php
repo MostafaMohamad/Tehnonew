@@ -210,7 +210,7 @@
 					</div>
 					<br>
 					<div class="table-responsive">
-						<table class="table table-bordered table-hover text-center" id="allpdttbl">
+						<table class="table table-hover text-center" id="allpdttbl">
 							<thead>
 								<tr>
 									<th class="col-xs-1">Name</th>
@@ -219,6 +219,7 @@
 									<th class="col-xs-1">Brand</th>
 									<th class="col-xs-1">Price</th>
 									<th class="col-xs-1">Description</th>
+									<th class="col-xs-1">Quantity</th>
 									<th class="col-xs-1">Image</th>
 									<th class="col-xs-1">Tools</th>
 									<th class="col-xs-1">Status</th>

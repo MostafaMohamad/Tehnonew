@@ -21,12 +21,17 @@ if ( isset( $_GET[ 'op' ] ) ) {
 			$data = $db->getData( $sql );
 			if ( count( $data ) > 0 ) {
 				for ( $i = 0; $i < count( $data ); $i++ ) {
-					echo( '<tr><td>' . $data[ $i ][ 'product_name' ] . '</td>' .
-						'<td>' . $data[ $i ][ 'model_number' ] . '</td>' .
-						'<td>' . $data[ $i ][ 'subc_name' ] . '</td>' .
-						'<td>' . $data[ $i ][ 'product_brand' ] . '</td>' .
-						'<td>' . $data[ $i ][ 'product_price' ] . ' &#36;</td>' .
-						'<td>' . $data[ $i ][ 'product_description' ] . '</td>' .
+					$qty = "SELECT COUNT(*)AS 'qty' FROM inventory WHERE inventory.p_id = '" . $data[ $i ][ "product_id" ] . "' AND status='available'";
+					$dbq = new DAL();
+					$qtyData = $dbq->getData( $qty );
+					$pdtQty = $qtyData[ 0 ][ "qty" ];
+					echo( '<tr><td><br>' . $data[ $i ][ 'product_name' ] . '</td>' .
+						'<td><br>' . $data[ $i ][ 'model_number' ] . '</td>' .
+						'<td><br>' . $data[ $i ][ 'subc_name' ] . '</td>' .
+						'<td><br>' . $data[ $i ][ 'product_brand' ] . '</td>' .
+						'<td><br>' . $data[ $i ][ 'product_price' ] . ' &#36;</td>' .
+						'<td><br>' . $data[ $i ][ 'product_description' ] . '</td>' .
+						'<td><br>' . $pdtQty . '</td>' .
 						'<td><img style="max-width:100px; max-height:100px;" src ="img/products/' . $data[ $i ][ 'product_name' ] . $data[ $i ][ 'model_number' ] . '/' . $data[ $i ][ 'product_image' ] . '"></td>' .
 						'<td><a class="btn fas fa-edit href="#"></a><br>' );
 					if ( $data[ $i ][ "Featured" ] == '0' ) {
@@ -35,9 +40,9 @@ if ( isset( $_GET[ 'op' ] ) ) {
 						echo( '<a class="btn fas fa-star ftd"  href="#"></a><br>' );
 					}
 					if ( $data[ $i ][ 'product_status' ] == '0' ) {
-						echo( '<a class="btn fas fa-check enb" href="#"></a></td><td><span class="fas fa-times-circle"></span></td></tr>' );
+						echo( '<a class="btn fas fa-check enb" href="#"></a></td><td><br><span class="fas fa-times-circle"></span></td></tr>' );
 					} else if ( $data[ $i ][ 'product_status' ] == '1' ) {
-						echo( '<a class="btn fas fa-times dis" href="#"></a></td><td><span class="fas fa-check-circle"></span></td></tr>' );
+						echo( '<a class="btn fas fa-times dis" href="#"></a></td><td><br><span class="fas fa-check-circle"></span></td></tr>' );
 					}
 
 				}
@@ -64,16 +69,16 @@ function GetAllProgarms() {
 
 				if ( count( $data ) > 0 ) {
 					for ( $i = 0; $i < count( $data ); $i++ ) {
-						echo( '<tr><td>' . $data[ $i ]["prog_name"].'</td>
-						<td>' . $data[ $i ]["cpu"].'</td>
-						<td>' . $data[ $i ]["multicore"].'</td>
-						<td>' . $data[ $i ]["ram"].'</td>
-						<td>' . $data[ $i ]["vram"].'</td>
-						<td>' . $data[ $i ]["os_type"].'</td>
-						<td>' . $data[ $i ]["prog_details"].'</td>
-						<td><img style="height:48px;" src="img/programs/'. $data[ $i ]["prog_name"].'/'. $data[ $i ]["prog_image"].'"></td>
-						<td>' . $data[ $i ]["prog_name"].'</td>
-						<td>' . $data[ $i ]["prog_name"].'</td></tr>' );
+						echo( '<tr><td>' . $data[ $i ][ "prog_name" ] . '</td>
+						<td>' . $data[ $i ][ "cpu" ] . '</td>
+						<td>' . $data[ $i ][ "multicore" ] . '</td>
+						<td>' . $data[ $i ][ "ram" ] . '</td>
+						<td>' . $data[ $i ][ "vram" ] . '</td>
+						<td>' . $data[ $i ][ "os_type" ] . '</td>
+						<td>' . $data[ $i ][ "prog_details" ] . '</td>
+						<td><img style="height:48px;" src="img/programs/' . $data[ $i ][ "prog_name" ] . '/' . $data[ $i ][ "prog_image" ] . '"></td>
+						<td>' . $data[ $i ][ "prog_name" ] . '</td>
+						<td>' . $data[ $i ][ "prog_name" ] . '</td></tr>' );
 					}
 
 				}
@@ -92,7 +97,7 @@ function GetAllSpecs() {
 
 		if ( count( $data ) > 0 ) {
 			for ( $i = 0; $i < count( $data ); $i++ ) {
-				echo( '<tr><td style="display:none;">'.$data[$i]["spec_id"].'</td>
+				echo( '<tr><td style="display:none;">' . $data[ $i ][ "spec_id" ] . '</td>
 				<td>' . $data[ $i ][ 'spec_name' ] . '</td>
 				<td><a href="#" data-toggle="modal" data-target="#edit-spec" class="edit-btn"><span class="fas fa-edit"></span></a></td></tr>' );
 			}
