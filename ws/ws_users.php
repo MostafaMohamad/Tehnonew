@@ -8,7 +8,7 @@ if ( isset( $_GET[ "op" ] ) ) {
 	if ( $_GET[ "op" ] == "login" ) {
 		if ( isset( $_GET[ "uemail" ] ) && isset( $_GET[ "upass" ] ) ) {
 			$encpass = $_GET[ "upass" ];
-			$sql = "SELECT * FROM users WHERE user_password ='" .$encpass. "' AND user_username ='" . $_GET[ "uuname" ] . "'OR user_email = '" . $_GET["uemail"] . "' AND user_password='".$encpass."'";
+			$sql = "SELECT * FROM users WHERE user_password ='" . $encpass . "' AND user_username ='" . $_GET[ "uuname" ] . "'OR user_email = '" . $_GET[ "uemail" ] . "' AND user_password='" . $encpass . "'";
 			try {
 				$db = new DAL();
 				$data = $db->getData( $sql );
@@ -38,7 +38,7 @@ if ( isset( $_GET[ "op" ] ) ) {
 		try {
 			$db = new DAL();
 			$data = $db->getData( $sql );
-			
+
 			if ( empty( $data ) ) {
 				echo( "0" );
 			} else if ( count( $data ) > 0 ) {
@@ -60,7 +60,7 @@ if ( isset( $_GET[ "op" ] ) ) {
 		try {
 			$db = new DAL();
 			$data = $db->getData( $sql );
-			
+
 			if ( empty( $data ) ) {
 				echo( "0" );
 			} else if ( count( $data ) > 0 ) {
@@ -84,17 +84,17 @@ if ( isset( $_GET[ "op" ] ) ) {
 		try {
 			$db = new DAL();
 			$data = $db->ExecuteQuery( $sql );
-			
-			
+
+
 			if ( empty( $data ) ) {
 				echo( "0" );
-			} else if ( !empty( $data )) {
-				echo($data);
+			} else if ( !empty( $data ) ) {
+				echo( $data );
 				session_start();
-					$_SESSION[ "uid" ] = $data;
-					$_SESSION[ "uname" ] = $_GET[ "uuname" ];
-					$_SESSION[ "utype" ] = $_GET[ "utype" ];
-				
+				$_SESSION[ "uid" ] = $data;
+				$_SESSION[ "uname" ] = $_GET[ "uuname" ];
+				$_SESSION[ "utype" ] = $_GET[ "utype" ];
+
 			} else {
 				echo( "-1" );
 			}
@@ -128,7 +128,7 @@ if ( isset( $_GET[ "op" ] ) ) {
 	//Update Info
 	else if ( $_GET[ "op" ] == "profileUpdate" ) {
 
-		$sql = "UPDATE users SET user_fullname = '" . $_GET[ "uname" ] . "',user_address = '" . $_GET["uaddress"] . "',user_phone = '" . $_GET[ "uphone" ] . "' WHERE user_username = '" . $_GET[ "uuname" ] . "'";
+		$sql = "UPDATE users SET user_fullname = '" . $_GET[ "uname" ] . "',user_address = '" . $_GET[ "uaddress" ] . "',user_phone = '" . $_GET[ "uphone" ] . "' WHERE user_username = '" . $_GET[ "uuname" ] . "'";
 
 		try {
 			$db = new DAL();
@@ -161,6 +161,22 @@ if ( isset( $_GET[ "op" ] ) ) {
 			echo - 1;
 		}
 
+	}
+
+	//Add keyword
+	else if ( $_GET[ "op" ] == "addkeyword" ) {
+		session_start();
+		if ( isset( $_SESSION[ "uid" ] ) ) {
+			$sql = "INSERT INTO recommended (user_id,keyword) VALUES ('" . $_SESSION[ "uid" ] . "', '" . $_GET[ "keyword" ] . "')";
+
+			try {
+				$db = new DAL();
+				$data = $db->ExecuteQuery( $sql );
+			} catch ( Exception $e ) {
+				echo $e;
+			}
+
+		}
 	}
 
 
