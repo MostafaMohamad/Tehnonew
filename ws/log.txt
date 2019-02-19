@@ -1,0 +1,8 @@
+<<<<<<< HEAD
+=======
+
+2019-02-14 10:36:21 : SQL (INSERT INTO  users (user_fullname,user_username,user_dob,user_email,user_gender,user_type,user_password,
+		user_status) VALUES('','','','','','','',''))
+2019-02-18 13:12:26 : SQL (INSERT INTO recomended (user_id,keyword) VALUES ('1', 'Apple'))
+2019-02-18 13:12:42 : SQL (INSERT INTO recomended (user_id,keyword) VALUES ('1', 'lkj'))
+>>>>>>> Technonew/master

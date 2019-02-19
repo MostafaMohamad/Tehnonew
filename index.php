@@ -3,8 +3,10 @@ include_once( "ws/DAL.class.php" );
 session_start();
 
 function GetRecommended() {
-	require_once('ws/DAL.class.php');
+	require_once( 'ws/DAL.class.php' );
 	if ( isset( $_SESSION[ "uid" ] ) ) {
+		$rec = '<h2>Recommended</h2>
+				<a href="productslist.php?op=newproducts">View more <span class="fas fa-eye"></span></a>';
 		$sql = '';
 	}
 }
@@ -62,11 +64,9 @@ function GetRecommended() {
 			<hr class="col-xs-6 col-xs-offset-3" style="border-top: 1px solid #d50000 !important;">
 			<br>
 			<br>
-			<h2>Recommended</h2>
-			<a href="productslist.php?op=newproducts">View more <span class="fas fa-eye"></span></a>
-			<div class="row ftrd">
+			<?php
 
-			</div>
+			?>
 		</div>
 		<!-- /.container -->
 
