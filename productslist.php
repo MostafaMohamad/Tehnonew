@@ -19,7 +19,7 @@ if ( isset( $_GET[ "op" ] ) ) {
 
 	}
 } else if ( isset( $_GET[ "keyword" ] ) ) {
-	$sql = "SELECT * FROM products WHERE product_name LIKE '%" . $_GET[ "keyword" ] . "%' OR model_number LIKE '%" . $_GET[ "keyword" ] . "%' OR product_brand LIKE '%" . $_GET[ "keyword" ] . "%' ORDER BY product_added DESC ";
+	$sql = "SELECT * FROM products WHERE product_name LIKE '%" . $_GET[ "keyword" ] . "%' OR model_number LIKE '%" . $_GET[ "keyword" ] . "%' OR product_brand LIKE '%" . $_GET[ "keyword" ] . "%' OR products.subc_id IN (SELECT subc_id FROM sub_categories WHERE subc_name LIKE '%".$_GET["keyword"]."%') ORDER BY product_added DESC ";
 	$getresult = true;
 
 } else if ( isset( $_GET[ "category" ] ) ) {

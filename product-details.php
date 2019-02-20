@@ -51,38 +51,38 @@ if ( isset( $_GET[ "pid" ] ) ) {
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<?php 
-		include_once("ws/DAL.class.php");	
-		$sql = "SELECT * FROM products WHERE products.product_id = '".$_GET['pid']."'";
-			$location="";
-		try {
-			$db = new DAL();
-			$data = $db->getData( $sql );
-			if(!empty($data) ){
-				$location= "img/products/".$data[0]['product_name'].$data[0]['model_number']."/";
-				echo('<div class="item active"><a href="img/products/'.$data[0]["product_name"].$data[0]["model_number"].'/'.$data[0]["product_image"].'" data-lightbox="roadtrip">
-		  <img class="img-responsive img-home-portfolio" src="img/products/'.$data[0]["product_name"].$data[0]["model_number"].'/'.$data[0]["product_image"].'"></a></div>');
-				$product_price = $data[0]["product_price"];
-			}
-		} catch ( Exception $e ) {
-			echo - 1;
-		}	
+					include_once("ws/DAL.class.php");	
+					$sql = "SELECT * FROM products WHERE products.product_id = '".$_GET['pid']."'";
+					$location="";
+					try {
+						$db = new DAL();
+						$data = $db->getData( $sql );
+						if(!empty($data) ){
+							$location= "img/products/".$data[0]['product_name'].$data[0]['model_number']."/";
+							echo('<div class="item active"><a href="img/products/'.$data[0]["product_name"].$data[0]["model_number"].'/'.$data[0]["product_image"].'" data-lightbox="roadtrip">
+							<img class="img-responsive img-home-portfolio" src="img/products/'.$data[0]["product_name"].$data[0]["model_number"].'/'.$data[0]["product_image"].'"></a></div>');
+							$product_price = $data[0]["product_price"];
+						}
+					} catch ( Exception $e ) {
+						echo - 1;
+					}	
 
-				$sql = "SELECT * FROM product_images WHERE product_id = '" . $_GET[ 'pid' ] . "'";
-				try {
-					$db = new DAL();
-					$data = $db->getData( $sql );
-					if ( !empty( $data ) ) {
-						for ( $i = 1; $i < 5; $i++ ) {
-							if ( !empty( $data[ 0 ][ "img" . $i ] ) ) {
-								echo( '<div class="item"><a href="' . $location . $data[ 0 ][ "img" . $i ] . '" data-lightbox="roadtrip">
-			<img class="img-responsive img-home-portfolio" src="' . $location . $data[ 0 ][ "img" . $i ] . '"> 
-		</a></div>' );
+					$sql = "SELECT * FROM product_images WHERE product_id = '" . $_GET[ 'pid' ] . "'";
+					try {
+						$db = new DAL();
+						$data = $db->getData( $sql );
+						if ( !empty( $data ) ) {
+							for ( $i = 1; $i < 5; $i++ ) {
+								if ( !empty( $data[ 0 ][ "img" . $i ] ) ) {
+									echo( '<div class="item"><a href="' . $location . $data[ 0 ][ "img" . $i ] . '" data-lightbox="roadtrip">
+									<img class="img-responsive img-home-portfolio" src="' . $location . $data[ 0 ][ "img" . $i ] . '"> 
+									</a></div>' );
+								}
 							}
 						}
+					} catch ( Exception $e ) {
+						echo - 1;
 					}
-				} catch ( Exception $e ) {
-					echo - 1;
-				}
 				?>
 			</div>
 		</div>
@@ -127,9 +127,11 @@ if ( isset( $_GET[ "pid" ] ) ) {
 			}
 			?>
 			<div class="pull-right">
-				<h3><?php echo($product_price." &#36;") ?>
-			<button class="add-to-cart btn btn-default" style="background: #d50000; color: white;" type="button">Add to cart</button></h3>
-				</div>
+				<h3>
+					<?php echo($product_price." &#36;") ?>
+					<button class="add-to-cart btn btn-default" style="background: #d50000; color: white;" type="button">Add to cart</button>
+				</h3>
+			</div>
 		</div>
 	</div>
 </body>
