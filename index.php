@@ -55,7 +55,7 @@ session_start();
 			<br>
 			<?php
 				include('ws/ws_recommended.php');
-				GetRecommended();
+				GetRecommended(false);
 			?>
 		</div>
 		<!-- /.container -->

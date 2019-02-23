@@ -10,7 +10,7 @@
 #page-wrapper {
   padding: 0 15px;
   min-height: 568px;
-  background-color: white;
+  background-color: #FAFAFA;
 }
 @media (min-width: 768px) {
   #page-wrapper {

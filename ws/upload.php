@@ -5,7 +5,7 @@ if ( isset( $_FILES[ 'file' ] ) ) {
 	$tmp_name = $_FILES[ 'file' ][ 'tmp_name' ];
 	$location = "../img/products/" . $fileName;
 	if ( file_exists( $location ) ) {} else {
-		mkdir( $location );
+		mkdir( $location , 0777 , TRUE );
 	}
 
 	$now = new DateTime();

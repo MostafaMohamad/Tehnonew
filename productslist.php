@@ -3,6 +3,7 @@ include_once( "ws/DAL.class.php" );
 session_start();
 $sql = '';
 $getresult = false;
+$rec = false;
 if ( isset( $_GET[ "op" ] ) ) {
 	$sql = "";
 	if ( $_GET[ "op" ] == "allproducts" ) {
@@ -16,10 +17,10 @@ if ( isset( $_GET[ "op" ] ) ) {
 		$sql = "SELECT * FROM products WHERE product_added >= DATE_ADD(NOW(), INTERVAL -2 MONTH) ORDER BY product_id DESC";
 		$getresult = true;
 	} else if ( $_GET[ "op" ] == "recommended" ) {
-
+		$rec = true;
 	}
 } else if ( isset( $_GET[ "keyword" ] ) ) {
-	$sql = "SELECT * FROM products WHERE product_name LIKE '%" . $_GET[ "keyword" ] . "%' OR model_number LIKE '%" . $_GET[ "keyword" ] . "%' OR product_brand LIKE '%" . $_GET[ "keyword" ] . "%' OR products.subc_id IN (SELECT subc_id FROM sub_categories WHERE subc_name LIKE '%".$_GET["keyword"]."%') ORDER BY product_added DESC ";
+	$sql = "SELECT * FROM products WHERE product_name LIKE '%" . $_GET[ "keyword" ] . "%' OR model_number LIKE '%" . $_GET[ "keyword" ] . "%' OR product_brand LIKE '%" . $_GET[ "keyword" ] . "%' OR products.subc_id IN (SELECT subc_id FROM sub_categories WHERE subc_name LIKE '%" . $_GET[ "keyword" ] . "%') ORDER BY product_added DESC ";
 	$getresult = true;
 
 } else if ( isset( $_GET[ "category" ] ) ) {
@@ -129,6 +130,7 @@ if ( !empty( $sql ) && $getresult ) {
 		echo $e;
 	}
 }
+
 ?>
 <html lang="en">
 <head>
@@ -153,7 +155,7 @@ if ( !empty( $sql ) && $getresult ) {
 <body>
 	<?php
 	include( "nav-tools.php" );
-	TopPage(false);
+	TopPage( false );
 	?>
 
 	<div class="section">
@@ -170,6 +172,9 @@ if ( !empty( $sql ) && $getresult ) {
 							case "newproducts":
 								echo( "New Products" );
 								break;
+							case "recommended":
+								echo( "Recommended For You" );
+								break;
 							default:
 								echo( "Products" );
 						}
@@ -184,7 +189,12 @@ if ( !empty( $sql ) && $getresult ) {
 			</p>
 			<div class="row ftrd">
 				<div id="product-list">
-					<?php if(!empty($s)){echo($s);} ?> </div>
+					<?php if(!empty($s)){echo($s);} 
+					if($rec){
+	include('ws/ws_recommended.php');
+		GetRecommended(true);
+}
+					?> </div>
 			</div>
 			<!-- /.row -->
 			<br>

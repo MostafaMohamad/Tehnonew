@@ -1,5 +1,6 @@
 <?php
 include_once( "ws/DAL.class.php" );
+session_start();
 
 if ( isset( $_GET[ "pid" ] ) ) {
 	$sql = "SELECT * FROM products WHERE products.product_id = '" . $_GET[ 'pid' ] . "'";
@@ -110,7 +111,7 @@ if ( isset( $_GET[ "pid" ] ) ) {
 			</div>
 			<hr>
 			<?php
-			$sql = "SELECT specifications.spec_name, pdt_specs.value FROM specifications,pdt_specs WHERE pdt_specs.product_id = '" . $_GET[ "pid" ] . "' AND pdt_specs.spec_id = specifications.spec_id ";
+			$sql = "SELECT specifications.spec_name, pdt_specs.value FROM specifications,pdt_specs WHERE pdt_specs.product_id = '" . $_GET[ "pid" ] . "' AND pdt_specs.spec_id = specifications.spec_id ORDER BY specifications.spec_name";
 			try {
 				$db = new DAL();
 				$data = $db->getData( $sql );

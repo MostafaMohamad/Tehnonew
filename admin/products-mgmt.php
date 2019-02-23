@@ -1,5 +1,5 @@
 <?php
-require_once( 'ws/DAL.class.php' );
+require_once( '../ws/DAL.class.php' );
 if ( isset( $_GET[ 'op' ] ) ) {
 	switch ( $_GET[ 'op' ] ) {
 		case 'products':
@@ -19,7 +19,7 @@ if ( isset( $_GET[ 'op' ] ) ) {
 		try {
 			$db = new DAL();
 			$data = $db->getData( $sql );
-			if ( count( $data ) > 0 ) {
+			if (!empty($data) && count( $data ) > 0 ) {
 				for ( $i = 0; $i < count( $data ); $i++ ) {
 					$qty = "SELECT COUNT(*)AS 'qty' FROM inventory WHERE inventory.p_id = '" . $data[ $i ][ "product_id" ] . "' AND status='available'";
 					$dbq = new DAL();
@@ -30,9 +30,9 @@ if ( isset( $_GET[ 'op' ] ) ) {
 						'<td><br>' . $data[ $i ][ 'subc_name' ] . '</td>' .
 						'<td><br>' . $data[ $i ][ 'product_brand' ] . '</td>' .
 						'<td><br>' . $data[ $i ][ 'product_price' ] . ' &#36;</td>' .
-						'<td><br>' . $data[ $i ][ 'product_description' ] . '</td>' .
+						'<td data-toggle="tooltip" title="'.$data[ $i ][ 'product_description' ].'"><br>' . substr($data[ $i ][ 'product_description' ],0, 64) . '</td>' .
 						'<td><br>' . $pdtQty . '</td>' .
-						'<td><img style="max-width:100px; max-height:100px;" src ="img/products/' . $data[ $i ][ 'product_name' ] . $data[ $i ][ 'model_number' ] . '/' . $data[ $i ][ 'product_image' ] . '"></td>' .
+						'<td><img style="max-width:100px; max-height:100px;" src ="../img/products/' . $data[ $i ][ 'product_name' ] . $data[ $i ][ 'model_number' ] . '/' . $data[ $i ][ 'product_image' ] . '"></td>' .
 						'<td><a class="btn fas fa-edit href="#"></a><br>' );
 					if ( $data[ $i ][ "Featured" ] == '0' ) {
 						echo( '<a class="btn fas fa-star nftd"  href="#"></a><br>' );
@@ -76,7 +76,7 @@ function GetAllProgarms() {
 						<td>' . $data[ $i ][ "vram" ] . '</td>
 						<td>' . $data[ $i ][ "os_type" ] . '</td>
 						<td>' . $data[ $i ][ "prog_details" ] . '</td>
-						<td><img style="height:48px;" src="img/programs/' . $data[ $i ][ "prog_name" ] . '/' . $data[ $i ][ "prog_image" ] . '"></td>
+						<td><img style="height:48px;" src="../img/programs/' . $data[ $i ][ "prog_name" ] . '/' . $data[ $i ][ "prog_image" ] . '"></td>
 						<td>' . $data[ $i ][ "prog_name" ] . '</td>
 						<td>' . $data[ $i ][ "prog_name" ] . '</td></tr>' );
 					}

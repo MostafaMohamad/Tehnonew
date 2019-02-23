@@ -6,3 +6,60 @@
 2019-02-18 13:12:26 : SQL (INSERT INTO recomended (user_id,keyword) VALUES ('1', 'Apple'))
 2019-02-18 13:12:42 : SQL (INSERT INTO recomended (user_id,keyword) VALUES ('1', 'lkj'))
 >>>>>>> Technonew/master
+
+2019-02-20 09:58:48 : SQL (INSERT INTO products (product_name, model_number, subc_id, product_price, product_image , product_brand, product_description,Featured,product_status) VALUES ('HP Notebook','15-da0090ne ',(SELECT subc_id from sub_categories WHERE subc_name= 'Laptops'),'599','<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: mkdir(): Permission denied in D:\wamp64\www\Technonew\ws\upload.php on line <i>8</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0082</td><td bgcolor='#eeeeec' align='right'>405704</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='D:\wamp64\www\Technonew\ws\upload.php' bgcolor='#eeeeec'>...\upload.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0083</td><td bgcolor='#eeeeec' align='right'>405768</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.mkdir' target='_new'>mkdir</a>
+(  )</td><td title='D:\wamp64\www\Technonew\ws\upload.php' bgcolor='#eeeeec'>...\upload.php<b>:</b>8</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: move_uploaded_file(../img/products/HP Notebook15-da0090ne /20022019115848.jpeg): failed to open stream: No such file or directory in D:\wamp64\www\Technonew\ws\upload.php on line <i>15</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0082</td><td bgcolor='#eeeeec' align='right'>405704</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='D:\wamp64\www\Technonew\ws\upload.php' bgcolor='#eeeeec'>...\upload.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0601</td><td bgcolor='#eeeeec' align='right'>408088</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.move-uploaded-file' target='_new'>move_uploaded_file</a>
+(  )</td><td title='D:\wamp64\www\Technonew\ws\upload.php' bgcolor='#eeeeec'>...\upload.php<b>:</b>15</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: move_uploaded_file(): Unable to move 'D:\wamp64\tmp\phpE132.tmp' to '../img/products/HP Notebook15-da0090ne /20022019115848.jpeg' in D:\wamp64\www\Technonew\ws\upload.php on line <i>15</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0082</td><td bgcolor='#eeeeec' align='right'>405704</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='D:\wamp64\www\Technonew\ws\upload.php' bgcolor='#eeeeec'>...\upload.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0601</td><td bgcolor='#eeeeec' align='right'>408088</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.move-uploaded-file' target='_new'>move_uploaded_file</a>
+(  )</td><td title='D:\wamp64\www\Technonew\ws\upload.php' bgcolor='#eeeeec'>...\upload.php<b>:</b>15</td></tr>
+</table></font>
+','HP','Designed for long-lasting performance, this stylishly designed HP  laptop has a long-lasting battery that keeps you connected, entertained, and productive all day.',0,1))
+2019-02-20 11:05:45 : SQL (INSERT INTO products (product_name, model_number, subc_id, product_price, product_image , product_brand, product_description,Featured,product_status) VALUES ('HP Notebook','15-da0090ne ',(SELECT subc_id from sub_categories WHERE subc_name= 'Laptops'),'599','<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: mkdir(): Permission denied in D:\wamp64\www\Technonew\ws\upload.php on line <i>8</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0004</td><td bgcolor='#eeeeec' align='right'>405704</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='D:\wamp64\www\Technonew\ws\upload.php' bgcolor='#eeeeec'>...\upload.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0005</td><td bgcolor='#eeeeec' align='right'>405768</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.mkdir' target='_new'>mkdir</a>
+(  )</td><td title='D:\wamp64\www\Technonew\ws\upload.php' bgcolor='#eeeeec'>...\upload.php<b>:</b>8</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: move_uploaded_file(../img/products/HP Notebook15-da0090ne /20022019130545.jpeg): failed to open stream: No such file or directory in D:\wamp64\www\Technonew\ws\upload.php on line <i>15</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0004</td><td bgcolor='#eeeeec' align='right'>405704</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='D:\wamp64\www\Technonew\ws\upload.php' bgcolor='#eeeeec'>...\upload.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0327</td><td bgcolor='#eeeeec' align='right'>408088</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.move-uploaded-file' target='_new'>move_uploaded_file</a>
+(  )</td><td title='D:\wamp64\www\Technonew\ws\upload.php' bgcolor='#eeeeec'>...\upload.php<b>:</b>15</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: move_uploaded_file(): Unable to move 'D:\wamp64\tmp\php2E23.tmp' to '../img/products/HP Notebook15-da0090ne /20022019130545.jpeg' in D:\wamp64\www\Technonew\ws\upload.php on line <i>15</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0004</td><td bgcolor='#eeeeec' align='right'>405704</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='D:\wamp64\www\Technonew\ws\upload.php' bgcolor='#eeeeec'>...\upload.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0327</td><td bgcolor='#eeeeec' align='right'>408088</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.move-uploaded-file' target='_new'>move_uploaded_file</a>
+(  )</td><td title='D:\wamp64\www\Technonew\ws\upload.php' bgcolor='#eeeeec'>...\upload.php<b>:</b>15</td></tr>
+</table></font>
+','HP','Designed for long-lasting performance, this stylishly designed HP 39.6 cm (15.6") laptop has a long-lasting battery that keeps you connected, entertained, and productive all day.',0,1))
