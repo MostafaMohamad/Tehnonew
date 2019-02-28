@@ -102,13 +102,6 @@ if ( isset( $_GET[ "pid" ] ) ) {
 			echo - 1;
 		}
 		?>
-			<div class="stars">
-				<span class="fas fa-star checked"></span>
-				<span class="fas fa-star checked"></span>
-				<span class="fas fa-star checked"></span>
-				<span class="fas fa-star"></span>
-				<span class="fas fa-star"></span>
-			</div>
 			<hr>
 			<?php
 			$sql = "SELECT specifications.spec_name, pdt_specs.value FROM specifications,pdt_specs WHERE pdt_specs.product_id = '" . $_GET[ "pid" ] . "' AND pdt_specs.spec_id = specifications.spec_id ORDER BY specifications.spec_name";

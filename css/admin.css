@@ -34,3 +34,6 @@ table th, #tbl-specs {
 .dataTables_filter {
 	display: none;
 }
+#duplicate, #error{
+	visibility: hidden;
+}
