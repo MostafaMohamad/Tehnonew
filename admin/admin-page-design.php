@@ -67,7 +67,7 @@ function page() {
 				<ul class="nav" id="side-menu">
 					<li> <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a> </li>
 					<li> <a href="products.php?op=products"><i class="fas fa-boxes"></i> Products</a> </li>
-					<li> <a href="inventory.php"><i class="fas fa-warehouse"></i> Inventory</a> </li>
+					<li> <a href="inventory.php#"><i class="fas fa-warehouse"></i> Inventory</a> </li>
 					<li> <a href="users.php"><i class="fas fa-users"></i> Users</a> </li>
 					<li> <a href="#"><i class="fas fa-chart-line"></i> Statistics<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
