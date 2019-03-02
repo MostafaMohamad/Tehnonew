@@ -18,11 +18,17 @@ $(document).ready(function () {
 	});
 	
 	var spec_id;
-	$(".edit-btn").click(function () {
+	
+	$(document).on("click", ".edit-btn", function () {
 		spec_id = $(this).closest("tr").children('td:nth-child(1)').text();
 		var spec_name = $(this).closest("tr").children('td:nth-child(2)').text();
 		$("#edt-spec-name").val(spec_name);
 	});
+	/*$(".edit-btn").click(function () {
+		spec_id = $(this).closest("tr").children('td:nth-child(1)').text();
+		var spec_name = $(this).closest("tr").children('td:nth-child(2)').text();
+		$("#edt-spec-name").val(spec_name);
+	});*/
 
 	$("#save-edt").click(function () {
 		var edited = $("#edt-spec-name").val();
