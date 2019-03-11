@@ -7,7 +7,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<title>Technonew | Products</title>
-	
+
 	<?php TopPage();?>
 
 	<!-- Select search -->
@@ -18,7 +18,7 @@
 
 	<!-- Datatables css -->
 	<link href="../css/datatables.min.css" rel="stylesheet" type="text/css">
-	
+
 </head>
 
 <body>
@@ -32,7 +32,7 @@
 				<!-- /.col-lg-12 -->
 			</div>
 			<ul class="nav nav-tabs">
-				<li class="active"><a data-toggle="tab" href="#home">General</a>
+				<li class="active"><a data-toggle="tab" href="#home" id="general">General</a>
 				</li>
 				<li><a data-toggle="tab" href="#pdt-info">Product</a>
 				</li>
@@ -96,44 +96,48 @@
 					<div class="tab-content"> <br>
 						<div id="product-info" class="tab-pane fade in active">
 							<h3>Product Info</h3>
-							<div class="form-group col-xs-6">
-								<label for="pdt-name">Name:</label>
-								<input type="text" class="form-control" id="pdt-name">
-							</div>
-							<div class="form-group col-xs-6">
-								<label for="pdt-model">Model number:</label>
-								<input type="text" class="form-control" id="pdt-model">
-							</div>
-							<div class="form-group col-xs-6">
-								<label for="pdt-subc">Subcategory:</label>
-								<select class="form-control" id="pdt-subc" style="width: 100%;">
+							<form id="pdt-info-form">
+								<div class="form-group col-xs-6">
+									<label for="pdt-name">Name:</label>
+									<input type="text" class="form-control" id="pdt-name">
+								</div>
+								<div class="form-group col-xs-6">
+									<label for="pdt-model">Model number:</label>
+									<input type="text" class="form-control" id="pdt-model">
+								</div>
+								<div class="form-group col-xs-6">
+									<label for="pdt-subc">Subcategory:</label>
+									<select class="form-control" id="pdt-subc" style="width: 100%;">
               </select>
-							
+								
 
 
 
-							</div>
-							<div class="form-group col-xs-6">
-								<label for="pdt-brand">Brand:</label>
-								<input type="text" class="form-control" id="pdt-brand">
-							</div>
-							<div class="form-group col-xs-6">
-								<label for="pdt-image">Image:</label>
-								<input type="file" class="form-control" id="pdt-image" name="file">
-							</div>
-							<div class="form-group col-xs-6">
-								<label for="pdt-price">Price:</label>
-								<input type="text" class="form-control" id="pdt-price">
-							</div>
-							<div class="form-group col-xs-12">
-								<label for="pdt-dsc">Description:</label>
-								<textarea class="form-control" rows="5" id="pdt-dsc"></textarea>
-							</div>
+
+								</div>
+								<div class="form-group col-xs-6">
+									<label for="pdt-brand">Brand:</label>
+									<input type="text" class="form-control" id="pdt-brand">
+								</div>
+								<div class="form-group col-xs-6">
+									<label for="pdt-image">Image:</label>
+									<input type="file" class="form-control" id="pdt-image" name="file">
+								</div>
+								<div class="form-group col-xs-6">
+									<label for="pdt-price">Price:</label>
+									<input type="text" class="form-control" id="pdt-price">
+								</div>
+								<div class="form-group col-xs-12">
+									<label for="pdt-dsc">Description:</label>
+									<textarea class="form-control" rows="5" id="pdt-dsc"></textarea>
+								</div>
+							</form>
 							<div class="form-group col-xs-2">
 								<button class="btn btn-primary form-control" data-toggle="tab" href="#specs">Next</button>
 							</div>
 						</div>
 						<div id="specs" class="tab-pane fade">
+							<a data-toggle="tab" href="#product-info"><i class="fas fa-arrow-left"></i> Back</a>
 							<h3>Specs</h3>
 							<div class="form-group col-xs-5">
 								<select class="form-control spec-name" style="width: 100%;">
@@ -162,6 +166,7 @@
 							</div>
 						</div>
 						<div id="upload-images" class="tab-pane fade">
+							<a data-toggle="tab" href="#specs"><i class="fas fa-arrow-left"></i> Back</a>
 							<h3>More details</h3>
 							<div class="form-group col-xs-5">
 								<label for="images">Product photos:</label>
@@ -251,6 +256,31 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-primary" id="enable-pdt">Save</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<!--Edit product price -->
+			<div id="price-edt" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title" id="pdtpname"></h4>
+							<h6 class="modal-title" id="pdtpmodel"></h6>
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="price-edt-input">Price &#40;&#36;&#41;:</label>
+								<input type="text" class="form-control" id="price-edt-input">
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" id="save-price">Save</button>
 						</div>
 					</div>
 

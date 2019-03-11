@@ -1,33 +1,33 @@
 // JavaScript Document
-$(document).ready(function(){
+$(document).ready(function () {
 	'use strict';
 	window.serverURL = "http://localhost/technonew/ws/";
 	$("#pdt-list").select2();
-	
+
 	GetProducts();
-	$("#pdt-list").change(function(){
+	$("#pdt-list").change(function () {
 		var pid = $(this).val();
 		GetSubItems(pid);
 	});
-	$("#open-form").click(function(){
+	$("#open-form").click(function () {
 		$('#add-inv-form')[0].reset();
-		$("#error").css('visibility','hidden');
-		$("#duplicate").css('visibility','hidden');
+		$("#error").css('visibility', 'hidden');
+		$("#duplicate").css('visibility', 'hidden');
 		$("#add-inv-btn").removeAttr("disabled");
 	});
-	$("#add-inv-form").submit(function(){
+	$("#add-inv-form").submit(function () {
 		var pid = $("#pdt-list").val();
 		var sn = $("#SN").val();
 		var wed = $("#wed").val();
-		AddProductToInventory(pid,sn,wed);
+		AddProductToInventory(pid, sn, wed);
 	});
-	
-	$("#SN").keyup(function(){
-		CheckSerialNumber($(this).val() ,$("#pdt-list").val());
+
+	$("#SN").keyup(function () {
+		CheckSerialNumber($(this).val(), $("#pdt-list").val());
 	});
 });
 
-function GetProducts(){
+function GetProducts() {
 	'use strict';
 	$.ajax({
 		type: 'GET',
@@ -54,17 +54,17 @@ function GetProducts(){
 	});
 }
 
-function PopulateOptions(options){
+function PopulateOptions(options) {
 	'use strict';
 	var opts = '';
-	for(var i  = 0; i < options.length; i++ ){
-		opts += '<option value ="'+options[i].product_id+'">'+options[i].product_name+' - '+options[i].model_number+' - ' +options[i].product_price+'&#36;</option>';
+	for (var i = 0; i < options.length; i++) {
+		opts += '<option value ="' + options[i].product_id + '">' + options[i].product_name + ' - ' + options[i].model_number + ' - ' + options[i].product_price + '&#36;</option>';
 	}
 	$("#pdt-list").empty().append(opts);
 	GetSubItems(options[0].product_id);
 }
 
-function GetSubItems(pid){
+function GetSubItems(pid) {
 	'use strict';
 	$.ajax({
 		type: 'GET',
@@ -79,7 +79,6 @@ function GetSubItems(pid){
 		success: function (data, textStatus, xhr) {
 			data = JSON.parse(xhr.responseText);
 			if (data === null) {
-				$("#sub-items-list").empty();
 				$("#qty").empty();
 			} else if (data !== null) {
 				var list = data;
@@ -92,24 +91,35 @@ function GetSubItems(pid){
 	});
 }
 
-function PopulateSubItems(lst){
+function PopulateSubItems(lst) {
 	'use strict';
-	var list = '';
 	var qty = 0;
-	for(var i = 0; i < lst.length; i++){
-		if(lst[i].status === 'available'){
-			qty++;
-		}
-		list += '<tr><td>'+lst[i].SN+'</td>'+
-			'<td>'+lst[i].warranty_end+'</td>'+
-			'<td>'+lst[i].status+'</td></tr>';
-	}
-	var quantity = '<h4><i class="fas fa-shopping-basket"></i> Available quantity: '+qty+'</h4>';
+	var quantity = '<h4><i class="fas fa-shopping-basket"></i> Available quantity: ' + qty + '</h4>';
 	$("#qty").empty().append(quantity);
-	$("#sub-items-list").empty().append(list);
+	if ($.fn.dataTable.isDataTable('#example')) {
+		$("#items-div").empty().append('<table id="example" class="display table table-hover text-center" width="100%"></table>');
+	}
+		var table = $('#example').DataTable({
+			"aaSorting": [],
+			data: lst,
+			columns: [{
+				title: "SN",
+				"data": "SN"
+			}, {
+				title: "Warranty End",
+				"data": "warranty_end"
+			}, {
+				title: "Status",
+				"data": "status"
+			}]
+		});
+	$("#items-search").keyup(function () {
+		table.search($(this).val()).draw();
+	});
+	
 }
 
-function AddProductToInventory(pid,sn,wed){
+function AddProductToInventory(pid, sn, wed) {
 	'use strict';
 	$.ajax({
 		type: 'GET',
@@ -118,15 +128,14 @@ function AddProductToInventory(pid,sn,wed){
 			op: "inv-add-item",
 			pid: pid,
 			sn: sn,
-			wed: wed				
+			wed: wed
 		}),
 
 		dataType: 'json',
 		timeout: 5000,
 		success: function (data, textStatus, xhr) {
 			data = JSON.parse(xhr.responseText);
-			if (data === null) {
-			} else if (data !== null) {
+			if (data === null) {} else if (data !== null) {
 				GetSubItems(pid);
 				$("#add-inv-Modal").modal('hide');
 			}
@@ -137,7 +146,7 @@ function AddProductToInventory(pid,sn,wed){
 	});
 }
 
-function CheckSerialNumber(sn,pid){
+function CheckSerialNumber(sn, pid) {
 	'use strict';
 	$.ajax({
 		type: 'GET',
@@ -152,17 +161,17 @@ function CheckSerialNumber(sn,pid){
 		timeout: 5000,
 		success: function (data, textStatus, xhr) {
 			data = JSON.parse(xhr.responseText);
-			$("#error").css('visibility','hidden');
+			$("#error").css('visibility', 'hidden');
 			if (data === 0) {
 				$("#add-inv-btn").removeAttr("disabled");
-				$("#duplicate").css('visibility','hidden');
-			}else if (data === 1){
+				$("#duplicate").css('visibility', 'hidden');
+			} else if (data === 1) {
 				$("#add-inv-btn").attr("disabled", true);
-				$("#duplicate").css('visibility','visible');
+				$("#duplicate").css('visibility', 'visible');
 			}
 		},
 		error: function () {
-			$("#error").css('visibility','visible');
+			$("#error").css('visibility', 'visible');
 			$("#add-inv-btn").attr("disabled", true);
 		}
 	});

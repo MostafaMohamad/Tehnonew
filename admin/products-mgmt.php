@@ -33,7 +33,7 @@ if ( isset( $_GET[ 'op' ] ) ) {
 						'<td data-toggle="tooltip" title="'.$data[ $i ][ 'product_description' ].'"><br>' . substr($data[ $i ][ 'product_description' ],0, 64) . '</td>' .
 						'<td><br>' . $pdtQty . '</td>' .
 						'<td><img style="max-width:100px; max-height:100px;" src ="../img/products/' . $data[ $i ][ 'product_name' ] . $data[ $i ][ 'model_number' ] . '/' . $data[ $i ][ 'product_image' ] . '"></td>' .
-						'<td><a class="btn fas fa-edit href="#"></a><br>' );
+						'<td><a class="btn fas fa-edit edit-pdt" href="#"></a><br>' );
 					if ( $data[ $i ][ "Featured" ] == '0' ) {
 						echo( '<a class="btn fas fa-star nftd"  href="#"></a><br>' );
 					} else if ( $data[ $i ][ "Featured" ] == '1' ) {

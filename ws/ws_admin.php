@@ -246,6 +246,48 @@ if ( isset( $_GET[ "op" ] ) ) {
 			echo - 1;
 		}
 	}
+	
+	//Get all professions and majors
+	else if ( $_GET[ "op" ] == "pm-list" ) {
+		$sql = "SELECT * FROM profession_major";
+		try {
+			$db = new DAL();
+			$data = $db->getData( $sql );
+
+			header( "Content-type:application/json" );
+			echo json_encode( $data );
+		} catch ( Exception $e ) {
+			echo - 1;
+		}
+	}
+	//Get programs from profession/major
+	else if ( $_GET[ "op" ] == "assigned-progs" ) {
+		$sql = "SELECT programs.prog_name FROM programs,pm_programs WHERE pm_programs.pm_id = '".$_GET["pm_id"]."' AND pm_programs.prog_id = programs.prog_id GROUP BY pm_programs.prog_id";
+		try {
+			$db = new DAL();
+			$data = $db->getData( $sql );
+
+			header( "Content-type:application/json" );
+			echo json_encode( $data );
+		} catch ( Exception $e ) {
+			echo - 1;
+		}
+	}
+	
+	
+	//Add new profession/major
+	else if ( $_GET[ "op" ] == "new-pm" ) {
+		$sql = "INSERT INTO profession_major (pm_name,pm_type) VALUES ('".$_GET["name"]."', '".$_GET["pm_type"]."')";
+		try {
+			$db = new DAL();
+			$data = $db->ExecuteQuery( $sql );
+
+			header( "Content-type:application/json" );
+			echo json_encode( $data );
+		} catch ( Exception $e ) {
+			echo - 1;
+		}
+	}
 }
 
 //SELECT MAX(program_specs.cpu) AS "cpu_max", MAX(program_specs.vram) AS "vram_max",MAX(program_specs.ram) AS "ram_max" FROM program_specs,programs,profession_major, pm_programs WHERE pm_programs.pm_id = (SELECT profession_major.pm_id WHERE profession_major.pm_name = "computer science") AND pm_programs.prog_id = programs.prog_id AND programs.prog_id = program_specs.prog_id AND program_specs.os_type = 'macos' 
