@@ -132,6 +132,22 @@ if ( isset( $_GET[ "op" ] ) ) {
 		}
 
 	}
+	
+	//Update product price
+	else if ( $_GET[ "op" ] == "price-update" ) {
+		$sql = "UPDATE products SET product_price = '".$_GET["price"]."' WHERE product_name ='".$_GET["pname"]."' AND model_number= '".$_GET["model"]."' ";
+
+		try {
+			$db = new DAL();
+			$data = $db->ExecuteQuery( $sql );
+			header( "Content-type:application/json" );
+			echo json_encode($data);
+
+		} catch ( Exception $e ) {
+			echo - 1;
+		}
+
+	}
 }
 
 ?>

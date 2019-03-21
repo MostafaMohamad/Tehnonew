@@ -31,10 +31,6 @@ $(window).ready(function () {
 
 	});
 
-	/*$(document).on("keyup", ".spec-val", function () {
-		alert($(".spec-val").eq($(".spec-val").index(this)).val());
-		alert($(".spec-name").eq($(".spec-val").index(this)).val());
-	});*/
 	$("#imup").click(function () {
 		UploadImage();
 	});
@@ -58,23 +54,27 @@ $(window).ready(function () {
 	$("#save-nftd").click(function () {
 		AddPdtToFeatured(model, "rmftd");
 	});
-
-	$(document).on("click", ".dis , .enb", function () {
-		alert($(this).className());
-		if ($(this).classList.contains("dis")) {
-			alert("dis");
-		}
-		if ($(this).classList.contains("enb")) {
-			alert("enb");
-		}
-
-		model = $(this).closest("tr").children('td:nth-child(2)').text();
-		var name = $(this).closest("tr").children('td:nth-child(1)').text();
-		OpenModal(model, name, "#dpdtname", "#dpdtmodel", "#disable");
+	
+	$(document).on("click", ".edit-pdt",function(){
+		var price = ($(this).closest("tr").children('td:nth-child(5)').text()).slice(0,-2);
+		$("#pdtpname").empty().append($(this).closest("tr").children('td:nth-child(1)').text());
+		$("#pdtpmodel").empty().append($(this).closest("tr").children('td:nth-child(2)').text());
+		$("#price-edt-input").val(price);
+		$("#price-edt").modal('show');
 	});
-
-	$("#disable-pdt").click(function () {
-		//EnableDisablePdt(model, "disablepdt");
+	
+	$("#save-price").click(function(){
+		var name = $("#pdtpname").text();
+		var model = $("#pdtpmodel").text();
+		var newPrice = $("#price-edt-input").val();
+		UpdateProductPrice(name,model,newPrice);
+	});
+	
+	$(document).on("click", ".dis",function(){
+		
+	});
+	$(document).on("click", ".enb",function(){
+		
 	});
 
 });
@@ -323,13 +323,8 @@ function SendImagesNames(pid,namesList){
 
 		dataType: 'json',
 		timeout: 5000,
-		success: function (data, textStatus, xhr) {
-			data = JSON.parse(xhr.responseText);
-			if (data === null) {
-
-			} else if (data !== null) {
-				location.reload();
-			}
+		success: function () {
+			$("#pdt-info-form")[0].reset();
 		},
 		error: function (xhr, status, errorThrown) {
 			alert(status + errorThrown);
@@ -353,6 +348,32 @@ function AddPdtToFeatured(model, operation) {
 		success: function (data, textStatus, xhr) {
 			data = JSON.parse(xhr.responseText);
 			location.reload();
+		},
+		error: function (xhr, status, errorThrown) {
+			alert(status + errorThrown);
+		}
+	});
+}
+
+function UpdateProductPrice(name,model,price){
+	'use strict';
+	$.ajax({
+		type: 'GET',
+		url: window.serverURL + "ws_products.php",
+		data: ({
+			op: "price-update",
+			pname:name,
+			model: model,
+			price:price
+		}),
+
+		dataType: 'json',
+		timeout: 5000,
+		success: function (data, textStatus, xhr) {
+			data = JSON.parse(xhr.responseText);
+			if(data !== null || data !== -1){
+				location.reload();
+			}
 		},
 		error: function (xhr, status, errorThrown) {
 			alert(status + errorThrown);

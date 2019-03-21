@@ -49,19 +49,15 @@ include( 'admin-page-design.php' );
 				<br>
 				<div id="qty"></div>
 			</div>
+			<div class="input-group pull-right col-sm-4 col-xs-12">
+								<input type="text" class="form-control" placeholder="Search" id="items-search">
+								<span class="input-group-addon"><i class="fas fa-search"></i></span>
+							</div>
 			<br>
 			<br>
-			<table class="table table-hover text-center" id="sub-items-tbl">
-				<thead>
-					<tr>
-						<th>SN</th>
-						<th>Warranty End</th>
-						<th>Status</th>
-					</tr>
-				</thead>
-				<tbody id="sub-items-list">
-				</tbody>
-			</table>
+			<div id="items-div">
+			<table id="example" class="display table table-hover text-center" width="100%"></table>
+				</div>
 			<!-- Add to Inventory Modal -->
 			<div id="add-inv-Modal" class="modal fade" role="dialog">
 				<div class="modal-dialog">
